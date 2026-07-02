@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta name="robots" content="noindex, nofollow, noarchive, nosnippet" />
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>세스코몰 Welcome 혜택 | 가입만 해도 시작되는 혜택</title>
+<link rel="preconnect" href="https://cdn.jsdelivr.net" />
+<link href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" rel="stylesheet" />
+<style>
+  :root{
+    --green:#00824A; --green-d:#066b3f; --green-l:#19A55E;
+    --mint:#E8F5EE; --mint-2:#f3faf6;
+    --ink:#16241D; --gray:#5b6b62; --line:#e2ece6;
+    --accent:#FF6B35; --accent-soft:#FFF1EA;
+    --white:#fff; --shadow:0 6px 24px rgba(13,60,38,.08);
+    --radius:16px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{
+    font-family:'Pretendard',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,'Helvetica Neue',sans-serif;
+    color:var(--ink); background:var(--mint-2); line-height:1.55;
+    -webkit-font-smoothing:antialiased;
+  }
+  .wrap{max-width:480px;margin:0 auto;background:var(--white);min-height:100vh;
+    box-shadow:0 0 60px rgba(0,0,0,.06);padding-bottom:96px;position:relative;overflow:hidden}
+
+  /* ===== Hero ===== */
+  .hero{background:linear-gradient(160deg,#00824A 0%,#066b3f 60%,#04492c 100%);
+    color:#fff;padding:54px 24px 60px;position:relative;overflow:hidden}
+  .hero::after{content:"";position:absolute;right:-60px;top:-60px;width:220px;height:220px;
+    background:radial-gradient(circle,rgba(255,255,255,.16),transparent 70%);border-radius:50%}
+  .brand{display:flex;align-items:center;gap:8px;font-weight:800;letter-spacing:-.5px;font-size:18px;margin-bottom:34px}
+  .brand .dot{width:10px;height:10px;border-radius:50%;background:#7CF0AE;box-shadow:0 0 0 4px rgba(124,240,174,.25)}
+  .hero .tag{display:inline-block;background:rgba(255,255,255,.16);border:1px solid rgba(255,255,255,.25);
+    padding:6px 13px;border-radius:999px;font-size:12.5px;font-weight:600;margin-bottom:18px;backdrop-filter:blur(4px)}
+  .hero h1{font-size:30px;line-height:1.28;font-weight:800;letter-spacing:-1px;margin-bottom:14px}
+  .hero h1 em{font-style:normal;color:#9CF7C0}
+  .hero p{font-size:15px;color:rgba(255,255,255,.86);font-weight:400}
+  .hero .cta{margin-top:26px}
+
+  /* ===== Buttons ===== */
+  .btn{display:flex;align-items:center;justify-content:center;gap:8px;width:100%;
+    padding:17px 20px;border-radius:14px;font-size:16.5px;font-weight:700;border:none;cursor:pointer;
+    text-decoration:none;letter-spacing:-.3px;transition:transform .12s ease,box-shadow .12s ease}
+  .btn-primary{background:var(--accent);color:#fff;box-shadow:0 8px 20px rgba(255,107,53,.32)}
+  .btn-primary:active{transform:translateY(1px)}
+  .btn-ghost{background:rgba(255,255,255,.12);color:#fff;border:1.5px solid rgba(255,255,255,.4)}
+
+  /* ===== Sections ===== */
+  section{padding:40px 22px}
+  .sec-head{text-align:center;margin-bottom:26px}
+  .sec-head .kicker{color:var(--green-l);font-weight:700;font-size:13px;letter-spacing:.5px;margin-bottom:8px}
+  .sec-head h2{font-size:23px;font-weight:800;letter-spacing:-.6px;line-height:1.34}
+  .sec-head h2 span{color:var(--green)}
+  .sec-head p{color:var(--gray);font-size:14px;margin-top:9px}
+
+  /* ===== Benefit cards ===== */
+  .cards{display:flex;flex-direction:column;gap:13px}
+  .card{background:var(--white);border:1px solid var(--line);border-radius:var(--radius);
+    padding:18px;display:flex;gap:14px;align-items:flex-start;box-shadow:var(--shadow)}
+  .card .ic{flex:none;width:46px;height:46px;border-radius:13px;background:var(--mint);
+    display:flex;align-items:center;justify-content:center;font-size:23px}
+  .card.event .ic{background:var(--accent-soft)}
+  .card .body{flex:1;min-width:0}
+  .card .body h3{font-size:16px;font-weight:700;letter-spacing:-.3px;margin-bottom:4px;display:flex;flex-wrap:wrap;gap:6px;align-items:center}
+  .card .body .price{color:var(--green);font-weight:800}
+  .card .body .price.acc{color:var(--accent)}
+  .card .body .desc{font-size:13px;color:var(--gray);line-height:1.5}
+  .card .body .value{margin-top:8px;font-size:12.5px;color:var(--green-d);background:var(--mint);
+    display:inline-block;padding:4px 9px;border-radius:7px;font-weight:600}
+  .badge{font-size:11px;font-weight:700;padding:3px 8px;border-radius:6px;letter-spacing:.2px}
+  .badge.always{background:#E8F5EE;color:#00824A}
+  .badge.event{background:#FFF1EA;color:#FF6B35}
+  .badge.soon{background:#EEF1F4;color:#6B7785}
+
+  /* ===== Timeline ===== */
+  .timeline{position:relative;padding-left:8px}
+  .step{display:flex;gap:16px;position:relative;padding-bottom:24px}
+  .step:last-child{padding-bottom:0}
+  .step .line{position:absolute;left:17px;top:36px;bottom:-4px;width:2px;background:linear-gradient(var(--green-l),var(--mint))}
+  .step:last-child .line{display:none}
+  .step .num{flex:none;width:36px;height:36px;border-radius:50%;background:var(--green);color:#fff;
+    font-weight:800;font-size:15px;display:flex;align-items:center;justify-content:center;z-index:1;box-shadow:0 4px 10px rgba(0,130,74,.3)}
+  .step .st-body{padding-top:4px}
+  .step .st-body h4{font-size:15.5px;font-weight:700;margin-bottom:3px;letter-spacing:-.3px}
+  .step .st-body p{font-size:13px;color:var(--gray)}
+  .step .st-body .hl{color:var(--accent);font-weight:700}
+
+  /* ===== FAQ ===== */
+  .faq{background:var(--mint-2)}
+  .faq details{background:#fff;border:1px solid var(--line);border-radius:12px;margin-bottom:10px;overflow:hidden}
+  .faq summary{padding:15px 17px;font-size:14.5px;font-weight:600;cursor:pointer;list-style:none;
+    display:flex;justify-content:space-between;align-items:center;gap:10px}
+  .faq summary::-webkit-details-marker{display:none}
+  .faq summary::after{content:"+";font-size:20px;color:var(--green-l);font-weight:400;transition:transform .2s}
+  .faq details[open] summary::after{transform:rotate(45deg)}
+  .faq .ans{padding:0 17px 16px;font-size:13.5px;color:var(--gray);line-height:1.6}
+
+  /* ===== Final CTA ===== */
+  .final{background:linear-gradient(160deg,#066b3f,#04492c);color:#fff;text-align:center;border-radius:24px 24px 0 0}
+  .final h2{font-size:24px;font-weight:800;letter-spacing:-.6px;line-height:1.35;margin-bottom:10px}
+  .final p{color:rgba(255,255,255,.82);font-size:14px;margin-bottom:22px}
+
+  /* ===== note ===== */
+  .note{font-size:12px;color:#93a39b;text-align:center;padding:22px;line-height:1.6}
+
+  /* ===== Sticky CTA ===== */
+  .sticky{position:fixed;left:0;right:0;bottom:0;z-index:50;display:flex;justify-content:center;
+    pointer-events:none;padding:12px;background:linear-gradient(transparent,rgba(255,255,255,.9) 40%)}
+  .sticky .inner{width:100%;max-width:456px;pointer-events:auto}
+  .sticky .btn-primary{box-shadow:0 10px 28px rgba(255,107,53,.4)}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <!-- HERO -->
+  <header class="hero">
+    <div class="brand"><span class="dot"></span>CESCO mall</div>
+    <span class="tag">신규 회원 Welcome 혜택</span>
+    <h1>세스코몰,<br><em>가입만 해도</em> 시작되는 혜택</h1>
+    <p>첫 구매 100원부터 살수록 쌓이는 포인트까지.<br>지금 세스코몰 회원이 되어 모두 받으세요.</p>
+    <div class="cta">
+      <a href="#signup" class="btn btn-primary">세스코몰 회원가입하고 혜택받기 →</a>
+    </div>
+  </header>
+
+  <!-- 혜택 요약 -->
+  <section>
+    <div class="sec-head">
+      <div class="kicker">WELCOME BENEFITS</div>
+      <h2>가입하면 받는 <span>혜택 한눈에</span></h2>
+      <p>세스코를 처음 만나는 모든 분께 드리는 환영 혜택</p>
+    </div>
+    <div class="cards">
+
+      <div class="card">
+        <div class="ic">🪙</div>
+        <div class="body">
+          <h3>마이랩 첫 구매 <span class="price">100원</span> <span class="badge always">상시</span></h3>
+          <div class="desc">마이랩 생활용품을 단돈 100원에 처음 경험해 보세요. (계정당 1회 · 앱 전용 · 1.5만원 이상 · 배송비 별도)</div>
+          <span class="value">생활 속 세스코, 부담 없이 시작</span>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="ic">🎟️</div>
+        <div class="body">
+          <h3>앱 구매용 <span class="price">5% 할인 쿠폰</span> <span class="badge always">상시</span></h3>
+          <div class="desc">최소 1.5만원 · 최대 5,000원 할인 · 유효 1개월. 100원 첫 구매 혜택과 <b>중복 사용 가능</b>합니다.</div>
+          <span class="value">첫 구매와 함께 쓰면 더 알뜰하게</span>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="ic">📈</div>
+        <div class="body">
+          <h3>구매 포인트 <span class="price">3~5% 적립</span> <span class="badge always">상시</span></h3>
+          <div class="desc">회원 등급별 3~5% 적립. 구매확정 시 적립되며 포인트 유효기간은 1년입니다.</div>
+          <span class="value">살수록 쌓이는 세스코 포인트</span>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="ic">🔁</div>
+        <div class="body">
+          <h3>2번째 구매 <span class="price">100% 적립</span> <span class="badge soon">10월 오픈예정</span></h3>
+          <div class="desc">두 번째 구매 금액을 포인트로 100% 돌려드립니다. (최대 15,000P · 유효 3개월)</div>
+          <span class="value">한 번 더 사면 사실상 한 번이 공짜</span>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="ic">🎁</div>
+        <div class="body">
+          <h3>3·5회 구매 <span class="price">감사 포인트</span> <span class="badge soon">10월 오픈예정</span></h3>
+          <div class="desc">3번째 구매 3,000P · 5번째 구매 10,000P 감사 포인트. (구매확정 시 적립 · 유효 3개월)</div>
+          <span class="value">꾸준히 함께할수록 커지는 혜택</span>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- 단계별 스토리 -->
+  <section style="background:var(--mint-2)">
+    <div class="sec-head">
+      <div class="kicker">STEP BY STEP</div>
+      <h2>살수록 <span>쌓이는 구조</span></h2>
+      <p>가입 한 번으로 시작되는 혜택의 흐름</p>
+    </div>
+    <div class="timeline">
+      <div class="step"><span class="line"></span><div class="num">1</div>
+        <div class="st-body"><h4>회원가입</h4><p>세스코몰 가입과 동시에 Welcome 혜택이 열립니다.</p></div></div>
+      <div class="step"><span class="line"></span><div class="num">2</div>
+        <div class="st-body"><h4>첫 구매 <span class="hl">100원</span></h4><p>마이랩을 부담 없이 첫 경험. 5% 쿠폰까지 함께.</p></div></div>
+      <div class="step"><span class="line"></span><div class="num">3</div>
+        <div class="st-body"><h4>2번째 구매 <span class="hl">100% 적립</span></h4><p>구매 금액을 포인트로 그대로 돌려받습니다.</p></div></div>
+      <div class="step"><div class="num">4</div>
+        <div class="st-body"><h4>3·5회 <span class="hl">감사 포인트</span></h4><p>함께할수록 커지는 3,000P · 10,000P 보너스.</p></div></div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="faq">
+    <div class="sec-head">
+      <div class="kicker">FAQ</div>
+      <h2>자주 묻는 질문</h2>
+    </div>
+    <details><summary>첫 구매 100원 혜택은 누구나 받을 수 있나요?</summary>
+      <div class="ans">세스코몰 신규 회원이라면 받을 수 있습니다. 계정당 1회 한정이며, 앱에서 1.5만원 이상 구매 시 적용됩니다. (배송비 별도, 대상 제품은 안내 페이지에서 확인)</div></details>
+    <details><summary>5% 할인 쿠폰과 100원 혜택을 같이 쓸 수 있나요?</summary>
+      <div class="ans">네, 두 혜택은 중복 사용이 가능합니다. 첫 구매 시 함께 적용하면 더 알뜰하게 이용하실 수 있습니다.</div></details>
+    <details><summary>2번째 구매 100% 적립은 언제부터 가능한가요?</summary>
+      <div class="ans">현재 시스템 준비 중인 혜택으로, 오픈 시점은 별도 안내드릴 예정입니다. 미리 가입해 두시면 오픈과 동시에 혜택을 받으실 수 있습니다.</div></details>
+    <details><summary>적립 포인트는 얼마나 오래 쓸 수 있나요?</summary>
+      <div class="ans">구매 포인트는 유효기간 1년, 2회·3·5회 적립 포인트는 유효기간 3개월입니다. 모두 구매확정 시점에 적립됩니다.</div></details>
+  </section>
+
+  <!-- 최종 CTA -->
+  <section class="final" id="signup">
+    <h2>지금 가입하고<br>Welcome 혜택 받기</h2>
+    <p>가입은 1분, 혜택은 오래도록.</p>
+    <a href="#" class="btn btn-primary" style="margin-bottom:12px">세스코몰 회원가입하기 →</a>
+    <a href="#" class="btn btn-ghost">이미 회원이에요 · 혜택 보러가기</a>
+  </section>
+
+  <p class="note">
+    ※ 본 페이지의 혜택 문구·수치는 세스코 혜택 백서(SSOT)를 기준으로 하며, 운영 상황에 따라 변경될 수 있습니다.<br>
+    일부 혜택(2번째 구매 100% 적립, 3·5회 감사 포인트)은 시스템 반영 후 오픈됩니다.
+  </p>
+
+  <!-- Sticky CTA -->
+  <div class="sticky">
+    <div class="inner">
+      <a href="#signup" class="btn btn-primary">세스코몰 회원가입하고 혜택받기</a>
+    </div>
+  </div>
+
+</div>
+</body>
+</html>

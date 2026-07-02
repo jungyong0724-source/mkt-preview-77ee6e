@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta name="robots" content="noindex, nofollow, noarchive, nosnippet" />
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>세스코 멤버스 혜택 | 멤버스가 되신 고객님께 드리는 첫 번째 약속</title>
+<link rel="preconnect" href="https://cdn.jsdelivr.net" />
+<link href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" rel="stylesheet" />
+<style>
+  :root{
+    --green:#00824A; --green-d:#066b3f; --green-l:#19A55E;
+    --mint:#E8F5EE; --mint-2:#f3faf6;
+    --ink:#16241D; --gray:#5b6b62; --line:#e2ece6;
+    --accent:#FF6B35; --accent-soft:#FFF1EA;
+    --gold:#C9A24B; --gold-l:#E8C877; --gold-soft:#FBF4E4;
+    --white:#fff; --shadow:0 6px 24px rgba(13,60,38,.08);
+    --radius:16px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{font-family:'Pretendard',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;
+    color:var(--ink); background:var(--mint-2); line-height:1.55;-webkit-font-smoothing:antialiased;}
+  .wrap{max-width:480px;margin:0 auto;background:var(--white);min-height:100vh;
+    box-shadow:0 0 60px rgba(0,0,0,.06);padding-bottom:96px;position:relative;overflow:hidden}
+
+  /* Hero — 멤버스 프리미엄 (딥 그린 + 골드) */
+  .hero{background:linear-gradient(160deg,#0b3d2a 0%,#083826 55%,#04231a 100%);
+    color:#fff;padding:54px 24px 60px;position:relative;overflow:hidden}
+  .hero::after{content:"";position:absolute;right:-70px;top:-70px;width:240px;height:240px;
+    background:radial-gradient(circle,rgba(201,162,75,.22),transparent 70%);border-radius:50%}
+  .brand{display:flex;align-items:center;gap:8px;font-weight:800;letter-spacing:1px;font-size:16px;margin-bottom:34px;color:var(--gold-l)}
+  .brand .dot{width:9px;height:9px;border-radius:50%;background:var(--gold-l);box-shadow:0 0 0 4px rgba(232,200,119,.22)}
+  .hero .tag{display:inline-block;background:rgba(201,162,75,.16);border:1px solid rgba(232,200,119,.4);
+    padding:6px 13px;border-radius:999px;font-size:12.5px;font-weight:600;margin-bottom:18px;color:var(--gold-l);letter-spacing:.5px}
+  .hero h1{font-size:29px;line-height:1.32;font-weight:800;letter-spacing:-1px;margin-bottom:14px}
+  .hero h1 em{font-style:normal;color:var(--gold-l)}
+  .hero p{font-size:15px;color:rgba(255,255,255,.86);font-weight:400}
+  .empathy{margin-top:20px;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.12);
+    border-radius:14px;padding:15px 16px;font-size:13.5px;color:rgba(255,255,255,.82);line-height:1.6}
+  .hero .cta{margin-top:24px}
+
+  /* Buttons */
+  .btn{display:flex;align-items:center;justify-content:center;gap:8px;width:100%;
+    padding:17px 20px;border-radius:14px;font-size:16.5px;font-weight:700;border:none;cursor:pointer;
+    text-decoration:none;letter-spacing:-.3px;transition:transform .12s ease,box-shadow .12s ease}
+  .btn-primary{background:var(--accent);color:#fff;box-shadow:0 8px 20px rgba(255,107,53,.32)}
+  .btn-primary:active{transform:translateY(1px)}
+  .btn-ghost{background:rgba(255,255,255,.12);color:#fff;border:1.5px solid rgba(255,255,255,.4)}
+  .btn-diag{background:var(--green);color:#fff;box-shadow:0 8px 20px rgba(0,130,74,.28)}
+
+  /* Sections */
+  section{padding:40px 22px}
+  .sec-head{text-align:center;margin-bottom:22px}
+  .sec-head .kicker{color:var(--gold);font-weight:700;font-size:13px;letter-spacing:.5px;margin-bottom:8px}
+  .sec-head h2{font-size:23px;font-weight:800;letter-spacing:-.6px;line-height:1.34}
+  .sec-head h2 span{color:var(--green)}
+  .sec-head p{color:var(--gray);font-size:14px;margin-top:9px}
+  .grp-label{display:flex;align-items:center;gap:8px;font-size:13px;font-weight:800;letter-spacing:.3px;
+    margin:6px 2px 12px;color:var(--gold)}
+  .grp-label::before{content:"";width:16px;height:2px;background:var(--gold);border-radius:2px}
+  .grp-label.cm{color:var(--green-l)}
+  .grp-label.cm::before{background:var(--green-l)}
+
+  /* Benefit cards */
+  .cards{display:flex;flex-direction:column;gap:13px;margin-bottom:6px}
+  .card{background:var(--white);border:1px solid var(--line);border-radius:var(--radius);
+    padding:18px;display:flex;gap:14px;align-items:flex-start;box-shadow:var(--shadow)}
+  .card.mb{border-color:#eadfbf;background:linear-gradient(180deg,#fffdf7,#fff)}
+  .card .ic{flex:none;width:46px;height:46px;border-radius:13px;background:var(--mint);
+    display:flex;align-items:center;justify-content:center;font-size:23px}
+  .card.mb .ic{background:var(--gold-soft)}
+  .card .body{flex:1;min-width:0}
+  .card .body h3{font-size:16px;font-weight:700;letter-spacing:-.3px;margin-bottom:4px;display:flex;flex-wrap:wrap;gap:6px;align-items:center}
+  .card .body .price{color:var(--green);font-weight:800}
+  .card.mb .body .price{color:#b7891f}
+  .card .body .desc{font-size:13px;color:var(--gray);line-height:1.5}
+  .card .body .value{margin-top:8px;font-size:12.5px;color:var(--green-d);background:var(--mint);
+    display:inline-block;padding:4px 9px;border-radius:7px;font-weight:600}
+  .card.mb .body .value{color:#96741c;background:var(--gold-soft)}
+  .badge{font-size:11px;font-weight:700;padding:3px 8px;border-radius:6px;letter-spacing:.2px}
+  .badge.always{background:#E8F5EE;color:#00824A}
+  .badge.event{background:#FFF1EA;color:#FF6B35}
+  .badge.soon{background:#EEF1F4;color:#6B7785}
+  .badge.mbonly{background:var(--gold-soft);color:#b7891f}
+
+  /* 멤버스 요약 블록 */
+  .promise{background:linear-gradient(160deg,#0b3d2a,#04231a);color:#fff;border-radius:20px;padding:26px 22px;margin-top:4px}
+  .promise h3{font-size:19px;font-weight:800;line-height:1.4;margin-bottom:16px}
+  .promise h3 em{font-style:normal;color:var(--gold-l)}
+  .promise ul{list-style:none;display:flex;flex-direction:column;gap:11px}
+  .promise li{display:flex;gap:10px;font-size:14px;color:rgba(255,255,255,.9);line-height:1.5}
+  .promise li::before{content:"✓";color:var(--gold-l);font-weight:800;flex:none}
+
+  /* Diagnosis */
+  .diag{background:linear-gradient(160deg,#0b3d2a,#04492c);color:#fff;border-radius:24px 24px 0 0}
+  .diag .sec-head .kicker{color:var(--gold-l)}
+  .diag .sec-head h2{color:#fff}
+  .diag .lead{color:rgba(255,255,255,.85);font-size:14px;text-align:center;margin:-10px auto 22px;max-width:340px;line-height:1.6}
+  .diag-list{display:flex;flex-direction:column;gap:10px;margin-bottom:22px}
+  .diag-item{display:flex;gap:13px;align-items:flex-start;background:rgba(255,255,255,.07);
+    border:1px solid rgba(255,255,255,.14);border-radius:14px;padding:14px 15px}
+  .diag-item .n{flex:none;width:26px;height:26px;border-radius:50%;background:var(--gold-l);color:#04231a;
+    font-weight:800;font-size:13px;display:flex;align-items:center;justify-content:center}
+  .diag-item h4{font-size:15px;font-weight:700;margin-bottom:2px}
+  .diag-item p{font-size:12.5px;color:rgba(255,255,255,.72);line-height:1.5}
+  .diag .subnote{text-align:center;font-size:12.5px;color:rgba(255,255,255,.7);margin-top:12px}
+
+  /* Final CTA */
+  .final{background:linear-gradient(160deg,#066b3f,#04492c);color:#fff;text-align:center}
+  .final h2{font-size:24px;font-weight:800;letter-spacing:-.6px;line-height:1.35;margin-bottom:10px}
+  .final p{color:rgba(255,255,255,.82);font-size:14px;margin-bottom:22px}
+
+  .note{font-size:12px;color:#93a39b;text-align:center;padding:22px;line-height:1.6}
+
+  /* Sticky */
+  .sticky{position:fixed;left:0;right:0;bottom:0;z-index:50;display:flex;justify-content:center;
+    pointer-events:none;padding:12px;background:linear-gradient(transparent,rgba(255,255,255,.9) 40%)}
+  .sticky .inner{width:100%;max-width:456px;pointer-events:auto}
+  .sticky .btn-primary{box-shadow:0 10px 28px rgba(255,107,53,.4)}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <!-- HERO -->
+  <header class="hero">
+    <div class="brand"><span class="dot"></span>CESCO MEMBERS</div>
+    <span class="tag">멤버스 전용 혜택</span>
+    <h1>세스코 멤버스가 되신 고객님께<br>드리는 <em>첫 번째 약속</em></h1>
+    <p>세스코몰에 가입하시면,<br>멤버스 고객님만을 위한 전용 혜택이 열립니다.</p>
+    <div class="empathy">위생의 위험은 예고 없이 찾아옵니다. 이제 혼자 고민하지 않으셔도 됩니다 — 세스코가 먼저 챙기겠습니다.</div>
+    <div class="cta">
+      <a href="#signup" class="btn btn-primary">세스코몰 회원가입하고 멤버스 혜택 열기 →</a>
+    </div>
+  </header>
+
+  <!-- 혜택 나열 -->
+  <section>
+    <div class="sec-head">
+      <div class="kicker">MEMBERS BENEFITS</div>
+      <h2>멤버스 고객님께 드리는 <span>혜택</span></h2>
+      <p>세스코몰에 가입하는 순간부터 열리는 전용 혜택</p>
+    </div>
+
+    <!-- A. 멤버스 전용 -->
+    <div class="grp-label">멤버스 전용 혜택</div>
+    <div class="cards">
+      <div class="card mb">
+        <div class="ic">🎉</div>
+        <div class="body">
+          <h3>세스코몰 가입 즉시 <span class="price">3,000P 적립</span> <span class="badge mbonly">멤버스</span></h3>
+          <div class="desc">가입과 동시에 현금처럼 쓸 수 있는 포인트를 즉시 지급합니다. (최초 1회 · 유효 365일)</div>
+          <span class="value">가입하는 순간 바로 혜택</span>
+        </div>
+      </div>
+      <div class="card mb">
+        <div class="ic">🎫</div>
+        <div class="body">
+          <h3><span class="price">5,000원</span> 즉시 사용 쿠폰 <span class="badge event">기간한정</span></h3>
+          <div class="desc">멤버스 계약 후 <b>30일 이내</b> 세스코몰에 가입하시면 5,000원 쿠폰을 즉시 발급, 바로 사용하실 수 있습니다. (유효 1년)</div>
+          <span class="value">지금 가입할수록 더 큰 혜택</span>
+        </div>
+      </div>
+      <div class="card mb">
+        <div class="ic">🏠</div>
+        <div class="body">
+          <h3>환경가전 추가계약 <span class="price">최대 할인</span> <span class="badge mbonly">멤버스</span></h3>
+          <div class="desc">환경가전을 추가 계약하시면 일반 대비 멤버스 전용 최대 할인과 컨설턴트 맞춤 견적을 제공합니다.</div>
+          <span class="value">하나 더 들이면 더 크게 아낀다</span>
+        </div>
+      </div>
+      <div class="card mb">
+        <div class="ic">🤝</div>
+        <div class="body">
+          <h3>추천인 혜택 <span class="price">이용액 5% 적립</span> <span class="badge mbonly">멤버스</span></h3>
+          <div class="desc">지인을 추천하시면 그분 서비스 이용액의 5%를 포인트로 적립해 드립니다. (1회차 납입 후 12개월 · 상한 없음 · 유효 1년)</div>
+          <span class="value">함께할수록 커지는 보상</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- B. 세스코몰 공통 (멤버스 조건) -->
+    <div class="grp-label cm" style="margin-top:22px">세스코몰 공통 혜택 · 멤버스 조건</div>
+    <div class="cards">
+      <div class="card">
+        <div class="ic">🪙</div>
+        <div class="body">
+          <h3>마이랩 첫 구매 <span class="price">100원 + 무료배송</span> <span class="badge always">상시</span></h3>
+          <div class="desc">마이랩 7종 중 선택, 단돈 100원에 배송비 부담 없이 직접 체험하세요. (계정당 1회 · 앱·웹 모두)</div>
+          <span class="value">전문가 위생용품을 부담 없이</span>
+        </div>
+      </div>
+      <div class="card">
+        <div class="ic">★</div>
+        <div class="body">
+          <h3>전 제품 <span class="price">멤버스 전용가</span> <span class="badge always">상시</span></h3>
+          <div class="desc">로그인하면 일반 고객보다 저렴한 멤버스 전용가가 소모품·마이랩 전 제품에 자동 적용됩니다.</div>
+          <span class="value">회원이면 늘 더 좋은 가격</span>
+        </div>
+      </div>
+      <div class="card">
+        <div class="ic">📈</div>
+        <div class="body">
+          <h3>구매 시마다 <span class="price">5% 포인트 적립</span> <span class="badge always">상시</span></h3>
+          <div class="desc">결제금액의 5%가 쌓여 다음 구매에 바로 사용할 수 있습니다. (구매확정 적립 · 유효 1년)</div>
+          <span class="value">살수록 쌓이는 멤버스 포인트</span>
+        </div>
+      </div>
+      <div class="card">
+        <div class="ic">🎟️</div>
+        <div class="body">
+          <h3>앱 구매용 <span class="price">5% 할인 쿠폰</span> <span class="badge always">상시</span></h3>
+          <div class="desc">최소 1.5만원 · 최대 5,000원 · 유효 1개월. 100원 혜택과 <b>중복 사용 가능</b>합니다.</div>
+          <span class="value">첫 구매와 함께 쓰면 더 알뜰하게</span>
+        </div>
+      </div>
+      <div class="card">
+        <div class="ic">🔁</div>
+        <div class="body">
+          <h3>2번째 구매 <span class="price">100% 적립</span> <span class="badge soon">10월 오픈예정</span></h3>
+          <div class="desc">두 번째 구매 금액을 포인트로 100% 돌려드립니다. (최대 15,000P · 유효 3개월)</div>
+          <span class="value">한 번 더 사면 사실상 한 번이 공짜</span>
+        </div>
+      </div>
+      <div class="card">
+        <div class="ic">🎁</div>
+        <div class="body">
+          <h3>3·5회 구매 <span class="price">감사 포인트</span> <span class="badge soon">10월 오픈예정</span></h3>
+          <div class="desc">3번째 구매 3,000P · 5번째 구매 10,000P 감사 포인트. (구매확정 적립 · 유효 3개월)</div>
+          <span class="value">꾸준히 함께할수록 커지는 혜택</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 멤버스 약속 요약 블록 -->
+  <section style="padding-top:8px">
+    <div class="promise">
+      <h3>세스코와 함께할수록,<br>고객님의 위생은 <em>더 빈틈없이</em> 관리됩니다</h3>
+      <ul>
+        <li>가입 즉시 3,000P + 30일 내 가입 시 5,000원 즉시 쿠폰</li>
+        <li>마이랩·소모품 전 제품 멤버스 전용가</li>
+        <li>환경가전 추가계약 시 멤버스 전용 최대 할인</li>
+        <li>지인 추천하면 이용액 5% 포인트 적립</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- 전문가 진단 신청 -->
+  <section class="diag">
+    <div class="sec-head">
+      <div class="kicker">EXPERT DIAGNOSIS</div>
+      <h2>혜택은 시작일 뿐<br>전문가가 직접 진단합니다</h2>
+    </div>
+    <p class="lead">세스코 전문 컨설턴트가 방문해 우리 집·사업장의 위생 상태를 정밀 진단합니다.
+      아래 4가지 중 원하는 진단 <b>1종을 무료로</b> 신청하실 수 있습니다.</p>
+    <div class="diag-list">
+      <div class="diag-item"><div class="n">1</div><div><h4>해충 정밀진단</h4><p>서식 흔적·유입 경로를 전문가가 진단하고 맞춤 솔루션을 제안합니다.</p></div></div>
+      <div class="diag-item"><div class="n">2</div><div><h4>플러스알파케어 체험</h4><p>세스코 플러스알파케어 서비스를 직접 체험해 보세요.</p></div></div>
+      <div class="diag-item"><div class="n">3</div><div><h4>실내 공기질 오염도·라돈 진단</h4><p>미세먼지·라돈 등 눈에 보이지 않는 실내 공기 위험을 측정합니다.</p></div></div>
+      <div class="diag-item"><div class="n">4</div><div><h4>침구·매트리스 오염진단</h4><p>침구·매트리스 속 진드기·오염도를 전문 장비로 확인합니다.</p></div></div>
+    </div>
+    <a href="#" class="btn btn-diag">전문가 진단 신청하기 →</a>
+    <p class="subnote">진단은 무료이며, 신청 후 컨설턴트가 방문 일정을 안내해 드립니다.</p>
+  </section>
+
+  <!-- 최종 CTA -->
+  <section class="final" id="signup">
+    <h2>지금 가입하고<br>멤버스 혜택을 여세요</h2>
+    <p>가입은 1분, 약속은 오래도록.</p>
+    <a href="#" class="btn btn-primary" style="margin-bottom:12px">세스코몰 회원가입하기 →</a>
+    <a href="#" class="btn btn-ghost">이미 회원이에요 · 혜택 보러가기</a>
+  </section>
+
+  <p class="note">
+    ※ 본 페이지의 혜택 문구·수치는 세스코 혜택 백서(SSOT)를 기준으로 하며, 운영 상황에 따라 변경될 수 있습니다.<br>
+    일부 혜택(2번째 구매 100% 적립, 3·5회 감사 포인트)은 시스템 반영 후 오픈됩니다.
+  </p>
+
+  <!-- Sticky CTA -->
+  <div class="sticky">
+    <div class="inner">
+      <a href="#signup" class="btn btn-primary">세스코몰 회원가입하고 멤버스 혜택 열기</a>
+    </div>
+  </div>
+
+</div>
+</body>
+</html>

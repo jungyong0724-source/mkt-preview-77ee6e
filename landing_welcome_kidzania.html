@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta name="robots" content="noindex, nofollow, noarchive, nosnippet" />
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>키자니아 × 세스코 | 지금 가입하면 배수구 클리너 증정</title>
+<link rel="preconnect" href="https://cdn.jsdelivr.net" />
+<link href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" rel="stylesheet" />
+<style>
+  :root{
+    --green:#00824A; --green-d:#066b3f; --green-l:#19A55E;
+    --mint:#E8F5EE; --mint-2:#f3faf6;
+    --ink:#16241D; --gray:#5b6b62; --line:#e2ece6;
+    --accent:#FF6B35; --accent-soft:#FFF1EA;
+    --kz:#E4007F; --kz-soft:#FFE9F4; /* 키자니아 포인트 */
+    --white:#fff; --shadow:0 6px 24px rgba(13,60,38,.08);
+    --radius:16px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{
+    font-family:'Pretendard',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;
+    color:var(--ink); background:var(--mint-2); line-height:1.55;-webkit-font-smoothing:antialiased;
+  }
+  .wrap{max-width:480px;margin:0 auto;background:var(--white);min-height:100vh;
+    box-shadow:0 0 60px rgba(0,0,0,.06);padding-bottom:96px;position:relative;overflow:hidden}
+
+  /* ===== Hero ===== */
+  .hero{background:linear-gradient(160deg,#00824A 0%,#066b3f 55%,#04492c 100%);
+    color:#fff;padding:50px 24px 56px;position:relative;overflow:hidden}
+  .hero::after{content:"";position:absolute;right:-50px;top:-50px;width:200px;height:200px;
+    background:radial-gradient(circle,rgba(228,0,127,.25),transparent 70%);border-radius:50%}
+  .brandrow{display:flex;align-items:center;gap:9px;margin-bottom:30px;font-weight:800;font-size:16px;letter-spacing:-.4px}
+  .brandrow .x{opacity:.6;font-weight:400}
+  .brandrow .kz{color:#FF9DD2}
+  .hero .tag{display:inline-block;background:var(--kz);padding:6px 13px;border-radius:999px;
+    font-size:12.5px;font-weight:700;margin-bottom:16px;box-shadow:0 4px 12px rgba(228,0,127,.4)}
+  .hero h1{font-size:29px;line-height:1.3;font-weight:800;letter-spacing:-1px;margin-bottom:13px}
+  .hero h1 em{font-style:normal;color:#9CF7C0}
+  .hero p{font-size:14.5px;color:rgba(255,255,255,.86)}
+
+  /* ===== Buttons ===== */
+  .btn{display:flex;align-items:center;justify-content:center;gap:8px;width:100%;
+    padding:17px 20px;border-radius:14px;font-size:16.5px;font-weight:700;border:none;cursor:pointer;
+    text-decoration:none;letter-spacing:-.3px;transition:transform .12s ease}
+  .btn-primary{background:var(--accent);color:#fff;box-shadow:0 8px 20px rgba(255,107,53,.32)}
+  .btn-primary:active{transform:translateY(1px)}
+  .btn-kz{background:var(--kz);color:#fff;box-shadow:0 8px 20px rgba(228,0,127,.32)}
+  .btn-ghost{background:rgba(255,255,255,.12);color:#fff;border:1.5px solid rgba(255,255,255,.4)}
+
+  /* ===== Hero gift highlight ===== */
+  .gift{margin-top:24px;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.22);
+    border-radius:16px;padding:16px 16px 18px;backdrop-filter:blur(4px)}
+  .gift .lab{font-size:11.5px;font-weight:700;color:#9CF7C0;letter-spacing:.4px;margin-bottom:6px}
+  .gift .ttl{font-size:18px;font-weight:800;letter-spacing:-.4px;margin-bottom:4px}
+  .gift .sub{font-size:12.5px;color:rgba(255,255,255,.78)}
+
+  /* ===== Sections ===== */
+  section{padding:38px 22px}
+  .sec-head{text-align:center;margin-bottom:24px}
+  .sec-head .kicker{color:var(--green-l);font-weight:700;font-size:13px;letter-spacing:.5px;margin-bottom:8px}
+  .sec-head h2{font-size:23px;font-weight:800;letter-spacing:-.6px;line-height:1.34}
+  .sec-head h2 span{color:var(--green)}
+  .sec-head p{color:var(--gray);font-size:14px;margin-top:9px}
+
+  /* ===== How (현장 3-step) ===== */
+  .how{background:var(--mint-2)}
+  .how-steps{display:flex;flex-direction:column;gap:12px}
+  .how-step{display:flex;gap:14px;align-items:center;background:#fff;border:1px solid var(--line);
+    border-radius:14px;padding:15px 16px;box-shadow:var(--shadow)}
+  .how-step .n{flex:none;width:34px;height:34px;border-radius:50%;background:var(--green);color:#fff;
+    font-weight:800;display:flex;align-items:center;justify-content:center;font-size:15px}
+  .how-step.gift-step .n{background:var(--kz)}
+  .how-step .t{font-size:14.5px}
+  .how-step .t b{font-weight:700}
+  .how-step .t .pink{color:var(--kz);font-weight:800}
+
+  /* ===== Benefit cards ===== */
+  .cards{display:flex;flex-direction:column;gap:13px}
+  .card{background:var(--white);border:1px solid var(--line);border-radius:var(--radius);
+    padding:18px;display:flex;gap:14px;align-items:flex-start;box-shadow:var(--shadow);position:relative}
+  .card.hi{border:1.5px solid var(--kz);background:linear-gradient(180deg,#fff,#fff7fb)}
+  .card.hi2{border:1.5px solid var(--accent);background:linear-gradient(180deg,#fff,#fff8f5)}
+  .card .ic{flex:none;width:46px;height:46px;border-radius:13px;background:var(--mint);
+    display:flex;align-items:center;justify-content:center;font-size:23px}
+  .card.hi .ic{background:var(--kz-soft)}
+  .card.hi2 .ic{background:var(--accent-soft)}
+  .card .body{flex:1;min-width:0}
+  .card .body h3{font-size:16px;font-weight:700;letter-spacing:-.3px;margin-bottom:4px;display:flex;flex-wrap:wrap;gap:6px;align-items:center}
+  .card .body .price{color:var(--green);font-weight:800}
+  .card .body .price.acc{color:var(--accent)}
+  .card .body .price.kz{color:var(--kz)}
+  .card .body .desc{font-size:13px;color:var(--gray);line-height:1.5}
+  .card .body .value{margin-top:8px;font-size:12.5px;color:var(--green-d);background:var(--mint);
+    display:inline-block;padding:4px 9px;border-radius:7px;font-weight:600}
+  .badge{font-size:11px;font-weight:700;padding:3px 8px;border-radius:6px}
+  .badge.always{background:#E8F5EE;color:#00824A}
+  .badge.event{background:#FFE9F4;color:#E4007F}
+  .badge.soon{background:#EEF1F4;color:#6B7785}
+
+  /* ===== FAQ ===== */
+  .faq details{background:#fff;border:1px solid var(--line);border-radius:12px;margin-bottom:10px;overflow:hidden}
+  .faq summary{padding:15px 17px;font-size:14.5px;font-weight:600;cursor:pointer;list-style:none;
+    display:flex;justify-content:space-between;align-items:center;gap:10px}
+  .faq summary::-webkit-details-marker{display:none}
+  .faq summary::after{content:"+";font-size:20px;color:var(--green-l);transition:transform .2s}
+  .faq details[open] summary::after{transform:rotate(45deg)}
+  .faq .ans{padding:0 17px 16px;font-size:13.5px;color:var(--gray);line-height:1.6}
+
+  /* ===== Final ===== */
+  .final{background:linear-gradient(160deg,#066b3f,#04492c);color:#fff;text-align:center;border-radius:24px 24px 0 0}
+  .final h2{font-size:23px;font-weight:800;letter-spacing:-.6px;line-height:1.35;margin-bottom:10px}
+  .final p{color:rgba(255,255,255,.82);font-size:14px;margin-bottom:22px}
+
+  .note{font-size:12px;color:#93a39b;text-align:center;padding:22px;line-height:1.6}
+
+  .sticky{position:fixed;left:0;right:0;bottom:0;z-index:50;display:flex;justify-content:center;
+    pointer-events:none;padding:12px;background:linear-gradient(transparent,rgba(255,255,255,.92) 40%)}
+  .sticky .inner{width:100%;max-width:456px;pointer-events:auto}
+  .sticky .btn{box-shadow:0 10px 28px rgba(255,107,53,.42)}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <!-- HERO -->
+  <header class="hero">
+    <div class="brandrow">CESCO mall <span class="x">×</span> <span class="kz">ZANIA</span></div>
+    <span class="tag">키자니아에서 만난 세스코의 약속</span>
+    <h1>아이를 기다리는 동안,<br><em>가족의 위생</em>은 세스코가</h1>
+    <p>해충·공기질·생활위생까지 고민이 생기는 순간마다,<br>세스코가 먼저 챙기겠습니다. 그 시작을 현장에서 준비했습니다.</p>
+
+    <div class="gift">
+      <div class="lab">현장 회원가입 고객께 드리는 첫 선물</div>
+      <div class="ttl">🧴 마이랩 배수구 클리너 <b>본품</b></div>
+      <div class="sub">세스코 과학연구소가 개발한 생활위생 브랜드 마이랩, 지금 가입하고 현장에서 직접 경험해 보세요.</div>
+    </div>
+
+    <div style="margin-top:22px">
+      <a href="#signup" class="btn btn-primary">지금 가입하고 배수구 클리너 받기 →</a>
+    </div>
+  </header>
+
+  <!-- 현장 3 STEP -->
+  <section class="how">
+    <div class="sec-head">
+      <div class="kicker">HOW TO GET</div>
+      <h2>현장에서 <span>이렇게</span> 받으세요</h2>
+      <p>기다리시는 잠깐이면 충분합니다</p>
+    </div>
+    <div class="how-steps">
+      <div class="how-step"><div class="n">1</div>
+        <div class="t">이 화면에서 <b>세스코몰 회원가입</b>을 완료합니다</div></div>
+      <div class="how-step gift-step"><div class="n">2</div>
+        <div class="t">가입 완료 화면을 <span class="pink">현장직원에게 보여 주세요</span></div></div>
+      <div class="how-step gift-step"><div class="n">3</div>
+        <div class="t"><span class="pink">배수구 클리너 본품</span>을 그 자리에서 받으세요 🎁</div></div>
+    </div>
+  </section>
+
+  <!-- 가입 혜택 -->
+  <section>
+    <div class="sec-head">
+      <div class="kicker">SIGN-UP BENEFITS</div>
+      <h2>가입하면 <span>이런 혜택도</span></h2>
+      <p>현장 선물에 더해, 집에서도 이어지는 세스코의 약속</p>
+    </div>
+    <div class="cards">
+
+      <div class="card hi2">
+        <div class="ic">🪙</div>
+        <div class="body">
+          <h3>마이랩 첫 구매 <span class="price acc">100원</span> <span class="badge always">상시</span></h3>
+          <div class="desc">전문가 수준의 생활위생용품 마이랩을 단돈 100원에 처음 만나 보세요. (계정당 1회 · 앱 전용 · 1.5만원 이상 · 배송비 별도)</div>
+          <span class="value">집에 가셔도 세스코몰에서 바로</span>
+        </div>
+      </div>
+
+      <div class="card hi">
+        <div class="ic">🎟️</div>
+        <div class="body">
+          <h3>키자니아 전용 <span class="price kz">5,000원 쿠폰</span> <span class="badge event">기간한정</span></h3>
+          <div class="desc">오늘 키자니아에서 가입하신 분께만 드리는 특별 쿠폰입니다. 세스코몰에서 알뜰하게 사용하실 수 있습니다.</div>
+          <span class="value">오늘 현장에서만 드리는 혜택</span>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="ic">📈</div>
+        <div class="body">
+          <h3>구매 포인트 <span class="price">3~5% 적립</span> <span class="badge always">상시</span></h3>
+          <div class="desc">구매하실 때마다 등급별 3~5%(일반 3% · 멤버스 5%)를 포인트로 적립해 드립니다. 구매확정 시 적립 · 유효 1년.</div>
+          <span class="value">세스코와 함께할수록 쌓이는 혜택</span>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="ic">🔁</div>
+        <div class="body">
+          <h3>2번째 구매 <span class="price">100% 적립</span> <span class="badge soon">10월 오픈예정</span></h3>
+          <div class="desc">두 번째 구매 금액을 포인트로 100% 돌려드립니다. 한 번 더 경험하시도록 세스코가 준비한 혜택입니다. (최대 15,000P · 유효 3개월)</div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="ic">🔎</div>
+        <div class="body">
+          <h3>전문가 <span class="price">무료진단</span> 체험 <span class="badge always">상시</span></h3>
+          <div class="desc">혼자 고민하지 마세요. 세스코 전문가가 우리 집 환경을 직접 진단하고, 결과에 맞는 맞춤 케어를 안내해 드립니다.</div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="faq" style="background:var(--mint-2)">
+    <div class="sec-head">
+      <div class="kicker">FAQ</div>
+      <h2>자주 묻는 질문</h2>
+    </div>
+    <details><summary>배수구 클리너는 어떻게 받나요?</summary>
+      <div class="ans">이 페이지에서 세스코몰 회원가입을 완료하신 뒤, 가입 완료(또는 로그인) 화면을 현장 세스코 직원에게 보여주시면 그 자리에서 배수구 클리너 본품을 드립니다.</div></details>
+    <details><summary>키자니아 전용 5,000원 쿠폰과 100원 혜택은 다른 건가요?</summary>
+      <div class="ans">네, 별개 혜택입니다. 첫 구매 100원은 세스코몰 신규 회원 공통 혜택이고, 5,000원 쿠폰은 키자니아 현장 가입자에게만 드리는 기간한정 혜택입니다.</div></details>
+    <details><summary>집에 가서 가입해도 선물을 받을 수 있나요?</summary>
+      <div class="ans">현장 배수구 클리너 증정은 현장에서 가입 후 직원 확인 시 제공됩니다. 다만 첫 구매 100원·구매 적립 등 세스코몰 혜택은 언제든 가입 후 이용하실 수 있습니다.</div></details>
+    <details><summary>이미 세스코몰 회원이에요.</summary>
+      <div class="ans">로그인 화면을 직원에게 보여주시면 현장 증정 안내를 도와드립니다. 회원이시라면 첫 구매 100원·쿠폰 등 일부 신규 혜택은 제외될 수 있습니다.</div></details>
+  </section>
+
+  <!-- 최종 CTA -->
+  <section class="final" id="signup">
+    <h2>오늘부터 가족의 위생은<br>세스코가 함께하겠습니다</h2>
+    <p>기다리시는 잠깐, 지금 가입하고 현장 선물을 받아 가세요.</p>
+    <a href="#" class="btn btn-primary" style="margin-bottom:12px">세스코몰 회원가입하기 →</a>
+    <a href="#" class="btn btn-ghost">이미 회원이에요 · 혜택 확인</a>
+  </section>
+
+  <p class="note">
+    ※ 본 페이지의 혜택 문구·수치는 세스코 혜택 백서(SSOT)를 기준으로 하며, 운영 상황에 따라 변경될 수 있습니다.<br>
+    현장 증정품(배수구 클리너)은 현장 회원가입 후 직원 확인 시 제공되며, 수량 소진 시 조기 마감될 수 있습니다.
+  </p>
+
+  <!-- Sticky -->
+  <div class="sticky">
+    <div class="inner">
+      <a href="#signup" class="btn btn-primary">지금 가입하고 배수구 클리너 받기</a>
+    </div>
+  </div>
+
+</div>
+</body>
+</html>
