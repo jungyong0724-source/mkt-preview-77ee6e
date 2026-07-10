@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>세스코몰 회원 혜택 | 일반회원 · 멤버스</title>
+<link rel="preconnect" href="https://cdn.jsdelivr.net" />
+<link href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" rel="stylesheet" />
+<style>
+  :root{
+    --blue-bg:#DEE6F4;
+    --gray-bg:#F2F2F2;
+    --green-bg:#E2EFD9;
+    --yellow-bg:#FFF3D0;
+    --dot-blue:#1F4EE0;
+    --dot-orange:#E8A33D;
+    --navy:#1F3864;
+    --navy-d:#152848;
+    --ink:#1A1A1A;
+    --gray:#5b5f63;
+    --line:#dfe2e5;
+    --white:#fff;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{font-family:'Pretendard',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;
+    color:var(--ink); background:#e9ebee; line-height:1.55;-webkit-font-smoothing:antialiased;}
+  .wrap{max-width:480px;margin:0 auto;background:var(--white);min-height:100vh;position:relative}
+
+  /* ===== 탭바 ===== */
+  .tabbar{position:sticky;top:0;z-index:70;display:flex;background:#fff;border-bottom:1px solid var(--line)}
+  .tab-btn{flex:1;padding:15px 0;font-weight:700;font-size:14.5px;color:var(--gray);background:transparent;
+    border:none;cursor:pointer;border-bottom:3px solid transparent;letter-spacing:-.2px}
+  .tab-btn.active{color:var(--navy);border-bottom-color:var(--navy)}
+
+  .view{display:none}
+  .view.active{display:block}
+
+  /* ===== 공통 블록 ===== */
+  .block{padding:34px 24px}
+  .block.blue{background:var(--blue-bg)}
+  .block.gray{background:var(--gray-bg)}
+  .block.green{background:var(--green-bg)}
+  .block.yellow{background:var(--yellow-bg)}
+  .block.navy{background:var(--navy);color:#fff}
+
+  .eyebrow{font-size:12.5px;font-weight:800;color:#8a4c00;letter-spacing:.3px;margin-bottom:10px}
+  .block.blue .eyebrow,.block.gray .eyebrow{color:#25469e}
+  .block.green .eyebrow{color:#3f7a2e}
+  .block.yellow .eyebrow{color:#a3720b}
+
+  h1.hd{font-size:24px;font-weight:800;line-height:1.4;letter-spacing:-.5px;margin-bottom:14px}
+  h2.hd{font-size:19px;font-weight:800;line-height:1.4;letter-spacing:-.4px;margin-bottom:10px}
+  .lead{font-size:14px;color:#333;line-height:1.75;margin-bottom:6px}
+  .lead b{font-weight:700}
+
+  /* ===== 버튼 (네이비 고정) ===== */
+  .btn{display:block;width:100%;text-align:center;background:var(--navy);color:#fff;
+    font-size:15px;font-weight:700;padding:16px 18px;border-radius:10px;text-decoration:none;
+    letter-spacing:-.2px;border:none;cursor:pointer;line-height:1.4}
+  .btn:active{background:var(--navy-d)}
+  .btn-outline{background:transparent;border:1.5px solid rgba(255,255,255,.6);color:#fff}
+
+  /* ===== 타임라인(원형 불릿) ===== */
+  .timeline{position:relative;margin-top:22px}
+  .t-item{display:flex;gap:16px;position:relative;padding-bottom:22px}
+  .t-item:last-child{padding-bottom:0}
+  .t-item .t-line{position:absolute;left:9px;top:22px;bottom:-2px;width:2px;background:#c7cddb}
+  .t-item:last-child .t-line{display:none}
+  .t-item .dot{flex:none;width:20px;height:20px;border-radius:50%;background:var(--dot-blue);margin-top:2px}
+  .block.yellow .t-item .dot{background:var(--dot-orange)}
+  .t-item .t-body h3{font-size:15.5px;font-weight:800;margin-bottom:4px;letter-spacing:-.2px}
+  .t-item .t-body p{font-size:13px;color:#3b3b3b;line-height:1.6}
+
+  /* ===== 대상 체크리스트 ===== */
+  .checklist{margin-top:20px}
+  .checklist p.q{font-size:14px;font-weight:700;margin-bottom:10px}
+  .checklist ul{list-style:none;display:flex;flex-direction:column;gap:8px}
+  .checklist li{display:flex;gap:8px;font-size:13.5px;color:#333;line-height:1.5}
+  .checklist li::before{content:"✔";color:#2f8f3f;font-weight:800;flex:none}
+
+  /* ===== 진단 리스트 (플레인) ===== */
+  .diag-list{margin-top:18px;display:flex;flex-direction:column;gap:16px}
+  .diag-item h3{font-size:15px;font-weight:800;margin-bottom:4px}
+  .diag-item p{font-size:13px;color:#333;line-height:1.65}
+  .diag-item .badge-soon{font-style:italic;color:#5b6b62;font-size:12px;font-weight:600}
+  .diag-cta{margin-top:20px}
+  .diag-note{font-size:12px;color:#4a4a4a;margin-top:10px;text-align:left}
+
+  .divider{height:1px;background:rgba(255,255,255,.18);margin:18px 0}
+
+  /* ===== 하단 상세 안내(플레인 텍스트) ===== */
+  .detail-note{padding:26px 24px;background:#fafafa;border-top:1px solid var(--line)}
+  .detail-note h5{font-size:13.5px;font-weight:800;color:var(--ink);margin-bottom:8px;letter-spacing:-.2px}
+  .detail-note p{font-size:12.5px;color:var(--gray);line-height:1.7}
+
+  .note{font-size:12px;color:#8a8f93;text-align:center;padding:20px 24px 32px;line-height:1.6;background:#fafafa}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <!-- 탭바: 일반회원 ↔ 멤버스 (해시로 URL 구분) -->
+  <div class="tabbar">
+    <button class="tab-btn" data-view="nonmember">비(非)멤버스 전용</button>
+    <button class="tab-btn" data-view="member">세스코 멤버스 전용</button>
+  </div>
+
+  <!-- ============ 일반회원(비멤버스) 뷰 ============ -->
+  <div class="view" id="view-nonmember">
+
+    <!-- ① 인트로 -->
+    <section class="block blue">
+      <div class="eyebrow">① 인트로 문구</div>
+      <h1 class="hd">세스코몰 가입만 해도<br>시작되는 혜택,<br>지금 바로 경험해 보세요!</h1>
+      <p class="lead">첫 구매 100원 혜택은 물론,<br>살수록 쌓이는 포인트까지!</p>
+      <p class="lead" style="margin-top:14px">지금 세스코몰 회원가입으로<br>이 모든 혜택은 물론,<br>실제 생활 속에서도<br>세스코의 전문적인 위생 관리 서비스를 경험해 보세요.</p>
+      <p class="lead" style="margin-top:14px">해충, 세균, 공기질, 진드기까지.<br>50년 이상 환경위생만을 연구해 온 세스코가<br>우리 가족의 건강한 일상을 함께 관리합니다.</p>
+      <div style="margin-top:24px">
+        <a href="#nonmember-signup" class="btn">세스코몰 회원가입하고<br>모든 혜택 받아보기</a>
+      </div>
+    </section>
+
+    <!-- ② 회원가입 시 혜택 안내 - 세스코몰 회원 공통 혜택 -->
+    <section class="block gray">
+      <div class="eyebrow">② 회원가입 시 혜택 안내 — 세스코몰 회원 공통 혜택</div>
+      <h2 class="hd">우리 가족을 위한 위생 관리,<br>세스코 회원가입으로 시작해보세요!</h2>
+      <p class="lead">세스코의 생활환경 관리 솔루션을 부담 없이 경험하고,<br>구매할수록 더 커지는 혜택까지 받아보세요.</p>
+
+      <div class="timeline">
+        <div class="t-item"><span class="t-line"></span><span class="dot"></span>
+          <div class="t-body"><h3>세스코몰 회원가입</h3></div></div>
+        <div class="t-item"><span class="t-line"></span><span class="dot"></span>
+          <div class="t-body"><h3>마이랩 첫 구매 100원 체험</h3>
+            <p>세스코가 연구해온 환경위생제품들을 첫 구매 한정 100원 특가로 경험할 수 있습니다.<br>(계정당 1회, 배송비 별도, 앱·웹 모두)</p></div></div>
+        <div class="t-item"><span class="t-line"></span><span class="dot"></span>
+          <div class="t-body"><h3>앱 구매용 5% 웰컴 쿠폰</h3>
+            <p>세스코몰 신규 회원에게 앱 구매용 5% 할인쿠폰을 증정합니다. 마이랩 첫 구매 100원 혜택과 중복 사용 가능합니다.<br>(계정당 1회, 앱 전용, 최소 1.5만원, 1개월 유효)</p></div></div>
+        <div class="t-item"><span class="t-line"></span><span class="dot"></span>
+          <div class="t-body"><h3>구매 포인트 3% 적립</h3>
+            <p>구매확정 시 적립되며 포인트 유효기간은 1년입니다.</p></div></div>
+        <div class="t-item">
+          <div class="t-body"><h3>소모품·마이랩 온라인 회원가</h3>
+            <p>로그인하면 가전 소모품·마이랩 제품을 온라인 회원가로 구매하실 수 있습니다.</p></div></div>
+      </div>
+      <p class="lead" style="margin-top:14px;font-size:12.5px;color:#5b5f63">※ 재구매 적립 혜택은 시스템 반영 후 순차 오픈될 예정입니다.</p>
+
+      <div class="checklist">
+        <p class="q">이런 분들께 세스코몰을 추천합니다.</p>
+        <ul>
+          <li>가족이 사용하는 공간을 더 위생적으로 관리하고 싶은 부모님</li>
+          <li>생활용품 하나도 진짜 전문가가 만든 제품을 선택하고 싶은 분</li>
+          <li>꾸준한 관리로 생활환경을 관리하는 습관을 만들고 싶은 분</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ③ 전문가 진단 서비스 안내 (4종) -->
+    <section class="block green">
+      <div class="eyebrow">③ 전문가 진단 서비스 안내(4종) — 전문가 진단 서비스 4종을 소개한 뒤, 관심 서비스로 신청을 연결합니다.</div>
+      <h2 class="hd">위생 전문가의 관리는 다르니까,<br>필요와 관심에 맞게, 지금 바로 신청해 보세요.</h2>
+      <p class="lead" style="margin-top:16px"><b>우리 집은 정말 깨끗할까요?</b><br><b>전문가 진단 서비스 1종 무료 이용권 (택1)</b></p>
+      <p class="lead" style="margin-top:12px">매일 청소하고 환기해도 생활환경 속 위생 문제는 눈에 보이지 않는 곳에서 시작됩니다. 해충이 숨어드는 틈, 공기 속 오염물질, 침구에 쌓이는 오염, 생활공간 곳곳의 위생 관리 포인트까지.</p>
+      <p class="lead" style="margin-top:10px">세스코는 단순히 문제를 해결하는 것이 아니라, 생활환경 전반을 진단하고 원인을 분석하여 우리 집에 맞는 관리 방법을 제안합니다.</p>
+
+      <div class="diag-list">
+        <div class="diag-item"><h3>① 해충 정밀진단</h3>
+          <p>해충은 보이는 한 마리가 아니라, 발생 원인까지 확인해야 합니다. 주방, 욕실, 배수구 등 해충이 발생하거나 유입될 수 있는 공간을 점검하고, 유입 경로와 서식 환경을 분석하여 우리 집에 맞는 예방 관리 방법을 제안합니다.</p></div>
+        <div class="diag-item"><h3>② 플러스알파케어 체험</h3>
+          <p>가족이 생활하는 공간, 눈에 보이지 않는 위생까지 관리해보세요. 세스코 환경가전 관리와 함께 손이 자주 닿는 생활공간의 위생 상태를 점검하고, 세스코만의 공간 위생관리 서비스인 플러스알파케어를 직접 체험하실 수 있습니다.</p></div>
+        <div class="diag-item"><h3>③ 실내 공기질·라돈 진단</h3>
+          <p>우리 가족이 매일 들이마시는 공기, 데이터로 확인해보세요. 미세먼지, 이산화탄소(CO₂), 휘발성유기화합물(VOCs), 라돈 등 눈에 보이지 않는 공기 오염 요인을 전문 장비로 측정하고, 실내 공기질 분석과 공간별 관리 가이드를 제공합니다.</p></div>
+        <div class="diag-item"><h3>④ 침구·매트리스 오염 진단 <span class="badge-soon">(오픈 예정)</span></h3>
+          <p>매일 사용하는 침구, 눈에 보이지 않는 오염까지 확인해보세요. 초정밀 현미경 장비를 활용하여 침구와 매트리스의 오염 상태와 진드기 등 알레르기 유발 환경을 진단하고, 우리 가족의 수면 환경에 맞는 관리 방법과 전문 케어 서비스를 제안합니다.</p></div>
+      </div>
+
+      <div class="diag-cta">
+        <a href="#" class="btn">전문가 진단 서비스<br>신청하러 가기</a>
+        <p class="diag-note">진단은 무료이며, 신청 후 세스코 고객센터에서 해피콜로 안내해 드립니다.</p>
+      </div>
+    </section>
+
+    <!-- 마무리 CTA -->
+    <section class="block navy" id="nonmember-signup" style="text-align:center">
+      <h2 class="hd" style="color:#fff">지금 바로 회원가입하고<br>풍성한 Welcome 혜택까지 받아보세요!</h2>
+      <p class="lead" style="color:rgba(255,255,255,.8)">세스코몰 회원님만을 위한 혜택은 계속됩니다.</p>
+      <div style="margin-top:18px">
+        <a href="#" class="btn btn-outline">세스코몰 회원가입하고<br>모든 혜택 받아보기</a>
+      </div>
+    </section>
+
+    <p class="note">
+      ※ 본 페이지의 혜택 문구·수치는 세스코 혜택 백서(SSOT)를 기준으로 하며, 운영 상황에 따라 변경될 수 있습니다.<br>
+      재구매 적립 등 일부 혜택은 시스템 반영 후 순차 오픈됩니다.
+    </p>
+  </div>
+
+  <!-- ============ 멤버스 뷰 ============ -->
+  <div class="view" id="view-member">
+
+    <!-- ① 인트로 -->
+    <section class="block blue">
+      <div class="eyebrow">① 인트로 문구</div>
+      <h1 class="hd">세스코 멤버스라면,<br>세스코몰 혜택까지<br>함께 누려보세요!</h1>
+      <p class="lead">첫 구매 100원 혜택은 물론,<br>살수록 쌓이는 포인트와 다양한 멤버스 전용 혜택까지.</p>
+      <p class="lead" style="margin-top:14px">이미 세스코의 서비스를 이용하고 계시는 멤버스 고객님이라면 이제 세스코몰에서도 생활 위생에 필요한 다양한 제품과 회원 전용 혜택까지 더욱 편리하게 이용해 보세요.</p>
+      <p class="lead" style="margin-top:14px">해충방제는 물론 환경가전과 생활위생용품까지.<br>50년 이상 환경위생만을 연구해 온 세스코가<br>세스코 멤버스 가족 분들의 건강한 일상을 함께 관리합니다.</p>
+      <div style="margin-top:24px">
+        <a href="#member-signup" class="btn">세스코몰 회원가입하고<br>모든 혜택 받아보기</a>
+      </div>
+    </section>
+
+    <!-- ② 회원가입 시 혜택 안내 - 멤버스 전용 혜택 -->
+    <section class="block yellow">
+      <div class="eyebrow">② 회원가입 시 혜택 안내 — 멤버스 전용 혜택</div>
+      <h2 class="hd">세스코와 함께 하는 고객님을 위한<br>멤버스 전용 혜택을 소개합니다.</h2>
+      <p class="lead">이미 이용 중인 세스코 서비스에 다양한 멤버스 전용 혜택까지 더해,<br>세스코몰에서 우리 가족의 생활환경을 더욱 체계적으로 관리해 보세요.</p>
+
+      <div class="timeline">
+        <div class="t-item"><span class="t-line"></span><span class="dot"></span>
+          <div class="t-body"><h3>세스코몰 가입 즉시 3,000P 적립</h3>
+            <p>가입과 동시에 현금처럼 쓸 수 있는 포인트를 즉시 지급합니다.<br>(최초 1회 · 1년 유효)</p></div></div>
+        <div class="t-item"><span class="t-line"></span><span class="dot"></span>
+          <div class="t-body"><h3>환경가전 추가계약 최대 할인</h3>
+            <p>환경가전을 추가 계약하시면 일반 대비 멤버스 전용 최대 할인과 컨설턴트 맞춤 견적을 제공합니다.</p></div></div>
+        <div class="t-item"><span class="t-line"></span><span class="dot"></span>
+          <div class="t-body"><h3>지인 추천 시 마이랩 선물 증정</h3>
+            <p>지인을 추천하시면 주방세제·핸드세정폼·수세미 등 마이랩 선물을 드립니다.</p></div></div>
+        <div class="t-item">
+          <div class="t-body"><h3>전 제품 멤버스 전용가 적용</h3>
+            <p>로그인하면 일반 고객보다 저렴한 멤버스 전용가가 소모품·마이랩 전 제품에 자동 적용됩니다.</p></div></div>
+      </div>
+    </section>
+
+    <!-- ② 회원가입 시 혜택 안내 - 세스코몰 회원 공통 혜택 -->
+    <section class="block gray">
+      <div class="eyebrow">② 회원가입 시 혜택 안내 — 세스코몰 회원 공통 혜택</div>
+      <h2 class="hd">우리 가족을 위한 위생 관리,<br>세스코 회원가입으로 시작해보세요!</h2>
+      <p class="lead">세스코의 생활환경 관리 솔루션을 부담 없이 경험하고,<br>구매할수록 더 커지는 혜택까지 받아보세요.</p>
+
+      <div class="timeline">
+        <div class="t-item"><span class="t-line"></span><span class="dot"></span>
+          <div class="t-body"><h3>세스코몰 회원가입</h3></div></div>
+        <div class="t-item"><span class="t-line"></span><span class="dot"></span>
+          <div class="t-body"><h3>마이랩 첫 구매 100원 체험 + 무료배송</h3>
+            <p>세스코가 연구해온 환경위생제품들을 첫 구매 한정 100원 특가로 경험할 수 있습니다.<br>(계정당 1회)</p></div></div>
+        <div class="t-item"><span class="t-line"></span><span class="dot"></span>
+          <div class="t-body"><h3>앱 구매용 5% 웰컴 쿠폰</h3>
+            <p>세스코몰 신규 회원에게 앱 구매용 5% 할인쿠폰을 증정합니다. 마이랩 첫 구매 100원 혜택과 중복 사용 가능합니다.<br>(계정당 1회, 앱 전용, 최소 1.5만원, 1개월 유효)</p></div></div>
+        <div class="t-item"><span class="t-line"></span><span class="dot"></span>
+          <div class="t-body"><h3>구매 시마다 5% 포인트 적립</h3>
+            <p>결제금액의 5%가 쌓여 다음 구매에 바로 사용할 수 있습니다. (구매확정 적립 · 유효 1년)</p></div></div>
+        <div class="t-item">
+          <div class="t-body"><h3>전 제품 멤버스 전용가 적용</h3>
+            <p>로그인하면 일반 고객보다 저렴한 멤버스 전용가가 소모품·마이랩 전 제품에 자동 적용됩니다.</p></div></div>
+      </div>
+      <p class="lead" style="margin-top:14px;font-size:12.5px;color:#5b5f63">※ 재구매 적립 혜택은 시스템 반영 후 순차 오픈될 예정입니다.</p>
+    </section>
+
+    <!-- ③ 전문가 진단 서비스 안내 (4종) -->
+    <section class="block green">
+      <div class="eyebrow">③ 전문가 진단 서비스 안내(4종) — 전문가 진단 서비스 4종을 소개한 뒤, 관심 서비스로 신청을 연결합니다.</div>
+      <h2 class="hd">위생 전문가의 관리는 다르니까,<br>필요와 관심에 맞게, 지금 바로 신청해 보세요.</h2>
+      <p class="lead" style="margin-top:16px"><b>우리 집은 정말 깨끗할까요?</b><br><b>전문가 진단 서비스 1종 무료 이용권 (택1)</b></p>
+      <p class="lead" style="margin-top:12px">매일 청소하고 환기해도 생활환경 속 위생 문제는 눈에 보이지 않는 곳에서 시작됩니다. 해충이 숨어드는 틈, 공기 속 오염물질, 침구에 쌓이는 오염, 생활공간 곳곳의 위생 관리 포인트까지.</p>
+      <p class="lead" style="margin-top:10px">세스코는 단순히 문제를 해결하는 것이 아니라, 생활환경 전반을 진단하고 원인을 분석하여 우리 집에 맞는 관리 방법을 제안합니다.</p>
+
+      <div class="diag-list">
+        <div class="diag-item"><h3>① 해충 정밀진단</h3>
+          <p>해충은 보이는 한 마리가 아니라, 발생 원인까지 확인해야 합니다. 주방, 욕실, 배수구 등 해충이 발생하거나 유입될 수 있는 공간을 점검하고, 유입 경로와 서식 환경을 분석하여 우리 집에 맞는 예방 관리 방법을 제안합니다.</p></div>
+        <div class="diag-item"><h3>② 플러스알파케어 체험</h3>
+          <p>가족이 생활하는 공간, 눈에 보이지 않는 위생까지 관리해보세요. 세스코 환경가전 관리와 함께 손이 자주 닿는 생활공간의 위생 상태를 점검하고, 세스코만의 공간 위생관리 서비스인 플러스알파케어를 직접 체험하실 수 있습니다.</p></div>
+        <div class="diag-item"><h3>③ 실내 공기질·라돈 진단</h3>
+          <p>우리 가족이 매일 들이마시는 공기, 데이터로 확인해보세요. 미세먼지, 이산화탄소(CO₂), 휘발성유기화합물(VOCs), 라돈 등 눈에 보이지 않는 공기 오염 요인을 전문 장비로 측정하고, 실내 공기질 분석과 공간별 관리 가이드를 제공합니다.</p></div>
+        <div class="diag-item"><h3>④ 침구·매트리스 오염 진단 <span class="badge-soon">(오픈 예정)</span></h3>
+          <p>매일 사용하는 침구, 눈에 보이지 않는 오염까지 확인해보세요. 초정밀 현미경 장비를 활용하여 침구와 매트리스의 오염 상태와 진드기 등 알레르기 유발 환경을 진단하고, 우리 가족의 수면 환경에 맞는 관리 방법과 전문 케어 서비스를 제안합니다.</p></div>
+      </div>
+
+      <div class="diag-cta">
+        <a href="#" class="btn">전문가 진단 서비스<br>신청하러 가기</a>
+        <p class="diag-note">진단은 무료이며, 신청 후 세스코 고객센터에서 해피콜로 안내해 드립니다.</p>
+      </div>
+    </section>
+
+    <!-- 마무리 CTA -->
+    <section class="block navy" id="member-signup" style="text-align:center">
+      <h2 class="hd" style="color:#fff">지금 바로 회원가입하고<br>풍성한 Welcome 혜택까지 받아보세요!</h2>
+      <p class="lead" style="color:rgba(255,255,255,.8)">세스코몰 회원님만을 위한 혜택은 계속됩니다.</p>
+      <div style="margin-top:18px">
+        <a href="#" class="btn btn-outline">세스코몰 회원가입하고<br>모든 혜택 받아보기</a>
+      </div>
+    </section>
+
+    <!-- 하단 상세 안내: 마이랩 첫 구매 100원 혜택(멤버스 조건) 상세 -->
+    <div class="detail-note">
+      <h5>마이랩 첫 구매 100원 혜택 · 상세 안내</h5>
+      <p>모기·진드기 기피제(반려견용), 주방세제 프리미엄, 배수구 클리너, 기름때 세정제 파워, 곡물발효 살균 소독제, 다용도 살균 클리닝 티슈, 항균 풋샴푸 7종 중 선택해 100원에 체험하실 수 있습니다. 계정당 1회 한정이며, 앱·웹 어디서나 신청 가능하고 무료배송으로 제공됩니다.</p>
+    </div>
+
+    <p class="note">
+      ※ 본 페이지의 혜택 문구·수치는 세스코 혜택 백서(SSOT)를 기준으로 하며, 운영 상황에 따라 변경될 수 있습니다.<br>
+      재구매 적립 등 일부 혜택은 시스템 반영 후 순차 오픈됩니다.
+    </p>
+  </div>
+
+</div>
+
+<script>
+  function setView(v){
+    v = (v === 'member') ? 'member' : 'nonmember';
+    document.querySelectorAll('.view').forEach(function(el){
+      el.classList.toggle('active', el.id === 'view-' + v);
+    });
+    document.querySelectorAll('.tab-btn').forEach(function(b){
+      b.classList.toggle('active', b.dataset.view === v);
+    });
+    if (location.hash.replace('#','') !== v) location.hash = v;
+    window.scrollTo(0,0);
+  }
+  document.querySelectorAll('.tab-btn').forEach(function(b){
+    b.addEventListener('click', function(){ setView(b.dataset.view); });
+  });
+  window.addEventListener('hashchange', function(){ setView(location.hash.replace('#','')); });
+  setView(location.hash.replace('#',''));
+</script>
+</body>
+</html>
