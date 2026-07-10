@@ -80,10 +80,20 @@
   .checklist li::before{content:"✔";color:#2f8f3f;font-weight:800;flex:none}
 
   /* ===== 진단 리스트 (플레인) ===== */
-  .diag-list{margin-top:18px;display:flex;flex-direction:column;gap:16px}
-  .diag-item h3{font-size:15px;font-weight:800;margin-bottom:4px}
-  .diag-item p{font-size:13px;color:#333;line-height:1.65}
+  .diag-list{margin-top:18px;display:flex;flex-direction:column;gap:22px}
+  .diag-item{background:rgba(255,255,255,.65);border-radius:12px;padding:16px 15px}
+  .diag-item .tag{font-size:12px;font-weight:800;color:#1F4EE0;margin-bottom:4px}
+  .diag-item .tag.soon{color:#a3720b}
+  .diag-item h3{font-size:15px;font-weight:800;margin-bottom:8px;line-height:1.4}
+  .diag-item p{font-size:13px;color:#333;line-height:1.7}
+  .diag-item p + p{margin-top:8px}
+  .diag-item .points{margin:10px 0 0;list-style:none;display:flex;flex-direction:column;gap:4px}
+  .diag-item .points li{font-size:12.5px;color:#333}
+  .diag-item .points li::before{content:"✔ ";color:#2f8f3f;font-weight:800}
   .diag-item .badge-soon{font-style:italic;color:#5b6b62;font-size:12px;font-weight:600}
+  .diag-item .apply-btn{display:block;margin-top:14px;width:100%;text-align:center;background:var(--navy);
+    color:#fff;font-size:13.5px;font-weight:700;padding:12px 14px;border-radius:9px;text-decoration:none}
+  .diag-item .apply-btn.disabled{background:#c7cdd6;color:#5b5f63;pointer-events:none}
   .diag-cta{margin-top:20px}
   .diag-note{font-size:12px;color:#4a4a4a;margin-top:10px;text-align:left}
 
@@ -164,20 +174,77 @@
       <p class="lead" style="margin-top:10px">세스코는 단순히 문제를 해결하는 것이 아니라, 생활환경 전반을 진단하고 원인을 분석하여 우리 집에 맞는 관리 방법을 제안합니다.</p>
 
       <div class="diag-list">
-        <div class="diag-item"><h3>① 해충 정밀진단</h3>
-          <p>해충은 보이는 한 마리가 아니라, 발생 원인까지 확인해야 합니다. 주방, 욕실, 배수구 등 해충이 발생하거나 유입될 수 있는 공간을 점검하고, 유입 경로와 서식 환경을 분석하여 우리 집에 맞는 예방 관리 방법을 제안합니다.</p></div>
-        <div class="diag-item"><h3>② 플러스알파케어 체험</h3>
-          <p>가족이 생활하는 공간, 눈에 보이지 않는 위생까지 관리해보세요. 세스코 환경가전 관리와 함께 손이 자주 닿는 생활공간의 위생 상태를 점검하고, 세스코만의 공간 위생관리 서비스인 플러스알파케어를 직접 체험하실 수 있습니다.</p></div>
-        <div class="diag-item"><h3>③ 실내 공기질·라돈 진단</h3>
-          <p>우리 가족이 매일 들이마시는 공기, 데이터로 확인해보세요. 미세먼지, 이산화탄소(CO₂), 휘발성유기화합물(VOCs), 라돈 등 눈에 보이지 않는 공기 오염 요인을 전문 장비로 측정하고, 실내 공기질 분석과 공간별 관리 가이드를 제공합니다.</p></div>
-        <div class="diag-item"><h3>④ 침구·매트리스 오염 진단 <span class="badge-soon">(오픈 예정)</span></h3>
-          <p>매일 사용하는 침구, 눈에 보이지 않는 오염까지 확인해보세요. 초정밀 현미경 장비를 활용하여 침구와 매트리스의 오염 상태와 진드기 등 알레르기 유발 환경을 진단하고, 우리 가족의 수면 환경에 맞는 관리 방법과 전문 케어 서비스를 제안합니다.</p></div>
+
+        <div class="diag-item">
+          <div class="tag">① 해충 정밀진단</div>
+          <h3>비염, 아토피 등 아이 알레르기 유발의 원인이 되는 해충</h3>
+          <p><b>아이가 힘들어하는 각종 알레르기, 비염·아토피도<br>혹시 집 안 해충 때문은 아닐까요?</b></p>
+          <p>바퀴벌레와 같은 실내 해충은 비염, 아토피 등 각종 알레르기를 유발하는 물질을 남기고, 아이가 생활하는 공간의 위생 환경에까지 영향을 줄 수 있습니다.</p>
+          <p>해충 정밀진단 서비스는 세스코 전문 컨설턴트가 직접 방문하여</p>
+          <ul class="points">
+            <li>발생한 해충의 종류와 발생 원인 확인</li>
+            <li>주방·욕실·배수구 등 주요 발생 공간 점검</li>
+            <li>해충 유입 경로 및 서식 환경 진단</li>
+            <li>우리 집 환경에 맞는 예방 및 관리 방법 제안</li>
+          </ul>
+          <p>을 진행합니다.</p>
+          <p>각종 알레르기의 주범인 해충이 우리 집에 왜 발생했고, 어떻게 관리해야 하는지 빠르고 정확하게 진단받아 보세요.</p>
+          <a href="expert-diagnosis-apply.html?diag=pest" class="apply-btn">해충 정밀진단 신청하러 가기 →</a>
+        </div>
+
+        <div class="diag-item">
+          <div class="tag">② 플러스알파케어 체험</div>
+          <h3>아이가 있는 집 기본 위생관리 서비스</h3>
+          <p><b>아이가 생활하는 우리 집,<br>각종 세균과 오염까지 고려하여<br>공간별 위생 관리하고 계신가요?</b></p>
+          <p>아이가 생활하며 손이 닿는 모든 공간은 곧 아이와 가족의 위생과 직결됩니다. 아이가 있는 집이라면, 사소해보이는 생활 공간도 위생 전문가의 관리가 필요한 이유입니다.</p>
+          <p>플러스알파케어는 세스코 환경가전 관리와 함께 생활공간 곳곳의 위생 상태를 점검하고 관리하는 세스코만의 차별화된 공간 위생관리 서비스입니다.</p>
+          <p>플러스알파케어 체험은 세스코 전문 컨설턴트가 직접 방문하여</p>
+          <ul class="points">
+            <li>환경가전 관리와 생활공간 위생 상태 점검</li>
+            <li>자주 접촉하는 공간의 위생 케어 (표면살균 서비스)</li>
+            <li>오염이 쌓이기 쉬운 공간 집중 관리 (배수구 위생관리 서비스)</li>
+            <li>생활환경에 맞는 위생 관리 방법 제안</li>
+          </ul>
+          <p>을 진행합니다.</p>
+          <p>제품 하나만을 관리하는 것이 아니라, 아이와 가족이 생활하는 공간 전체를 함께 관리합니다.</p>
+          <a href="expert-diagnosis-apply.html?diag=alpha" class="apply-btn">플러스알파케어 체험 신청하러 가기 →</a>
+        </div>
+
+        <div class="diag-item">
+          <div class="tag">③ 실내 공기질 · 라돈 진단</div>
+          <p><b>집중력이 필요한 우리 아이 공간,<br>학습환경을 좌우하는 공기질까지<br>꼼꼼히 확인해보셨나요?</b></p>
+          <p>하루종일 숨쉬는 실내 공기 중에는 미세먼지뿐 아니라 학습 집중력 저하를 유발하는 이산화탄소(CO₂), 기저질환을 유발하는 휘발성유기화합물(VOCs), 1급 발암물질 라돈 등 눈에 보이지 않는 공기 오염 요인이 존재하곤 합니다.</p>
+          <p>실내 공기질·라돈 진단 서비스는 세스코 전문 컨설턴트가 세스코 전문 진단 장비로</p>
+          <ul class="points">
+            <li>실내 공기질 측정 및 오염도 분석</li>
+            <li>라돈 농도 측정</li>
+            <li>공간별 환기 환경 점검</li>
+            <li>우리 집에 맞는 공기 관리 방법 제안</li>
+          </ul>
+          <p>을 진행합니다.</p>
+          <p>눈으로 확인하기 어려웠던 실내 공기 상태를 직접 확인하고, 우리 가족에게 맞는 관리 방법까지 받아보세요.</p>
+          <a href="expert-diagnosis-apply.html?diag=air" class="apply-btn">실내 공기질·라돈 진단 신청하러 가기 →</a>
+        </div>
+
+        <div class="diag-item">
+          <div class="tag soon">④ 침구 · 매트리스 오염 진단 <span class="badge-soon">(오픈 예정)</span></div>
+          <p><b>10가구 중 8가구에서 발견되는 진드기,<br>우리 아이가 매일 잠드는 침구는<br>정말 괜찮을까요?</b></p>
+          <p>매일 우리가 사용하는 매트리스와 침구는 땀, 피부 각질, 먼지 등이 지속적으로 축적되는 공간으로, 각종 호흡기 질환과 알레르기, 비염 등이 걱정된다면 정기적인 위생 관리가 무엇보다 중요한 생활환경입니다.</p>
+          <p>침구·매트리스 오염 진단 서비스는 세스코 전문 컨설턴트가 직접 방문하여</p>
+          <ul class="points">
+            <li>초정밀 현미경 장비를 활용한 침구·매트리스 오염도 진단</li>
+            <li>위생 관리가 필요한 구간 점검</li>
+            <li>생활환경 개선 및 관리 가이드 제공</li>
+            <li>세스코 전문 매트리스 케어 서비스 연계</li>
+          </ul>
+          <p>를 진행합니다.</p>
+          <p>매일 잠드는 침구의 위생 상태를 객관적으로 진단받고, 아이와 가족이 안심할 수 있는 침구로 관리하실 수 있습니다.</p>
+          <span class="apply-btn disabled">오픈 예정입니다</span>
+        </div>
+
       </div>
 
-      <div class="diag-cta">
-        <a href="#" class="btn">전문가 진단 서비스<br>신청하러 가기</a>
-        <p class="diag-note">진단은 무료이며, 신청 후 세스코 고객센터에서 해피콜로 안내해 드립니다.</p>
-      </div>
+      <p class="diag-note">각 진단은 무료이며, 신청 후 세스코 고객센터에서 해피콜로 안내해 드립니다.</p>
     </section>
 
     <!-- 마무리 CTA -->
@@ -266,20 +333,77 @@
       <p class="lead" style="margin-top:10px">세스코는 단순히 문제를 해결하는 것이 아니라, 생활환경 전반을 진단하고 원인을 분석하여 우리 집에 맞는 관리 방법을 제안합니다.</p>
 
       <div class="diag-list">
-        <div class="diag-item"><h3>① 해충 정밀진단</h3>
-          <p>해충은 보이는 한 마리가 아니라, 발생 원인까지 확인해야 합니다. 주방, 욕실, 배수구 등 해충이 발생하거나 유입될 수 있는 공간을 점검하고, 유입 경로와 서식 환경을 분석하여 우리 집에 맞는 예방 관리 방법을 제안합니다.</p></div>
-        <div class="diag-item"><h3>② 플러스알파케어 체험</h3>
-          <p>가족이 생활하는 공간, 눈에 보이지 않는 위생까지 관리해보세요. 세스코 환경가전 관리와 함께 손이 자주 닿는 생활공간의 위생 상태를 점검하고, 세스코만의 공간 위생관리 서비스인 플러스알파케어를 직접 체험하실 수 있습니다.</p></div>
-        <div class="diag-item"><h3>③ 실내 공기질·라돈 진단</h3>
-          <p>우리 가족이 매일 들이마시는 공기, 데이터로 확인해보세요. 미세먼지, 이산화탄소(CO₂), 휘발성유기화합물(VOCs), 라돈 등 눈에 보이지 않는 공기 오염 요인을 전문 장비로 측정하고, 실내 공기질 분석과 공간별 관리 가이드를 제공합니다.</p></div>
-        <div class="diag-item"><h3>④ 침구·매트리스 오염 진단 <span class="badge-soon">(오픈 예정)</span></h3>
-          <p>매일 사용하는 침구, 눈에 보이지 않는 오염까지 확인해보세요. 초정밀 현미경 장비를 활용하여 침구와 매트리스의 오염 상태와 진드기 등 알레르기 유발 환경을 진단하고, 우리 가족의 수면 환경에 맞는 관리 방법과 전문 케어 서비스를 제안합니다.</p></div>
+
+        <div class="diag-item">
+          <div class="tag">① 해충 정밀진단</div>
+          <h3>비염, 아토피 등 아이 알레르기 유발의 원인이 되는 해충</h3>
+          <p><b>아이가 힘들어하는 각종 알레르기, 비염·아토피도<br>혹시 집 안 해충 때문은 아닐까요?</b></p>
+          <p>바퀴벌레와 같은 실내 해충은 비염, 아토피 등 각종 알레르기를 유발하는 물질을 남기고, 아이가 생활하는 공간의 위생 환경에까지 영향을 줄 수 있습니다.</p>
+          <p>해충 정밀진단 서비스는 세스코 전문 컨설턴트가 직접 방문하여</p>
+          <ul class="points">
+            <li>발생한 해충의 종류와 발생 원인 확인</li>
+            <li>주방·욕실·배수구 등 주요 발생 공간 점검</li>
+            <li>해충 유입 경로 및 서식 환경 진단</li>
+            <li>우리 집 환경에 맞는 예방 및 관리 방법 제안</li>
+          </ul>
+          <p>을 진행합니다.</p>
+          <p>각종 알레르기의 주범인 해충이 우리 집에 왜 발생했고, 어떻게 관리해야 하는지 빠르고 정확하게 진단받아 보세요.</p>
+          <a href="expert-diagnosis-apply.html?diag=pest" class="apply-btn">해충 정밀진단 신청하러 가기 →</a>
+        </div>
+
+        <div class="diag-item">
+          <div class="tag">② 플러스알파케어 체험</div>
+          <h3>아이가 있는 집 기본 위생관리 서비스</h3>
+          <p><b>아이가 생활하는 우리 집,<br>각종 세균과 오염까지 고려하여<br>공간별 위생 관리하고 계신가요?</b></p>
+          <p>아이가 생활하며 손이 닿는 모든 공간은 곧 아이와 가족의 위생과 직결됩니다. 아이가 있는 집이라면, 사소해보이는 생활 공간도 위생 전문가의 관리가 필요한 이유입니다.</p>
+          <p>플러스알파케어는 세스코 환경가전 관리와 함께 생활공간 곳곳의 위생 상태를 점검하고 관리하는 세스코만의 차별화된 공간 위생관리 서비스입니다.</p>
+          <p>플러스알파케어 체험은 세스코 전문 컨설턴트가 직접 방문하여</p>
+          <ul class="points">
+            <li>환경가전 관리와 생활공간 위생 상태 점검</li>
+            <li>자주 접촉하는 공간의 위생 케어 (표면살균 서비스)</li>
+            <li>오염이 쌓이기 쉬운 공간 집중 관리 (배수구 위생관리 서비스)</li>
+            <li>생활환경에 맞는 위생 관리 방법 제안</li>
+          </ul>
+          <p>을 진행합니다.</p>
+          <p>제품 하나만을 관리하는 것이 아니라, 아이와 가족이 생활하는 공간 전체를 함께 관리합니다.</p>
+          <a href="expert-diagnosis-apply.html?diag=alpha" class="apply-btn">플러스알파케어 체험 신청하러 가기 →</a>
+        </div>
+
+        <div class="diag-item">
+          <div class="tag">③ 실내 공기질 · 라돈 진단</div>
+          <p><b>집중력이 필요한 우리 아이 공간,<br>학습환경을 좌우하는 공기질까지<br>꼼꼼히 확인해보셨나요?</b></p>
+          <p>하루종일 숨쉬는 실내 공기 중에는 미세먼지뿐 아니라 학습 집중력 저하를 유발하는 이산화탄소(CO₂), 기저질환을 유발하는 휘발성유기화합물(VOCs), 1급 발암물질 라돈 등 눈에 보이지 않는 공기 오염 요인이 존재하곤 합니다.</p>
+          <p>실내 공기질·라돈 진단 서비스는 세스코 전문 컨설턴트가 세스코 전문 진단 장비로</p>
+          <ul class="points">
+            <li>실내 공기질 측정 및 오염도 분석</li>
+            <li>라돈 농도 측정</li>
+            <li>공간별 환기 환경 점검</li>
+            <li>우리 집에 맞는 공기 관리 방법 제안</li>
+          </ul>
+          <p>을 진행합니다.</p>
+          <p>눈으로 확인하기 어려웠던 실내 공기 상태를 직접 확인하고, 우리 가족에게 맞는 관리 방법까지 받아보세요.</p>
+          <a href="expert-diagnosis-apply.html?diag=air" class="apply-btn">실내 공기질·라돈 진단 신청하러 가기 →</a>
+        </div>
+
+        <div class="diag-item">
+          <div class="tag soon">④ 침구 · 매트리스 오염 진단 <span class="badge-soon">(오픈 예정)</span></div>
+          <p><b>10가구 중 8가구에서 발견되는 진드기,<br>우리 아이가 매일 잠드는 침구는<br>정말 괜찮을까요?</b></p>
+          <p>매일 우리가 사용하는 매트리스와 침구는 땀, 피부 각질, 먼지 등이 지속적으로 축적되는 공간으로, 각종 호흡기 질환과 알레르기, 비염 등이 걱정된다면 정기적인 위생 관리가 무엇보다 중요한 생활환경입니다.</p>
+          <p>침구·매트리스 오염 진단 서비스는 세스코 전문 컨설턴트가 직접 방문하여</p>
+          <ul class="points">
+            <li>초정밀 현미경 장비를 활용한 침구·매트리스 오염도 진단</li>
+            <li>위생 관리가 필요한 구간 점검</li>
+            <li>생활환경 개선 및 관리 가이드 제공</li>
+            <li>세스코 전문 매트리스 케어 서비스 연계</li>
+          </ul>
+          <p>를 진행합니다.</p>
+          <p>매일 잠드는 침구의 위생 상태를 객관적으로 진단받고, 아이와 가족이 안심할 수 있는 침구로 관리하실 수 있습니다.</p>
+          <span class="apply-btn disabled">오픈 예정입니다</span>
+        </div>
+
       </div>
 
-      <div class="diag-cta">
-        <a href="#" class="btn">전문가 진단 서비스<br>신청하러 가기</a>
-        <p class="diag-note">진단은 무료이며, 신청 후 세스코 고객센터에서 해피콜로 안내해 드립니다.</p>
-      </div>
+      <p class="diag-note">각 진단은 무료이며, 신청 후 세스코 고객센터에서 해피콜로 안내해 드립니다.</p>
     </section>
 
     <!-- 마무리 CTA -->

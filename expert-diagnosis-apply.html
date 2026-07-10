@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>세스코 전문가 진단 신청</title>
+<link rel="preconnect" href="https://cdn.jsdelivr.net" />
+<link href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" rel="stylesheet" />
+<script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+<style>
+  :root{
+    --navy:#1F3864; --navy-d:#152848;
+    --blue-bg:#DEE6F4; --green-bg:#E2EFD9; --gray-bg:#F2F2F2;
+    --ink:#1A1A1A; --gray:#5b5f63; --line:#dfe2e5; --white:#fff;
+    --err:#d0342c; --ok:#2f8f3f;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{font-family:'Pretendard',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;
+    color:var(--ink); background:#e9ebee; line-height:1.55;-webkit-font-smoothing:antialiased;}
+  .wrap{max-width:480px;margin:0 auto;background:var(--white);min-height:100vh;position:relative}
+
+  .block{padding:32px 24px}
+  .block.blue{background:var(--blue-bg)}
+  .block.green{background:var(--green-bg)}
+  .block.gray{background:var(--gray-bg)}
+  .block.navy{background:var(--navy);color:#fff}
+
+  .eyebrow{font-size:12.5px;font-weight:800;color:#25469e;letter-spacing:.3px;margin-bottom:10px}
+  .block.green .eyebrow{color:#3f7a2e}
+
+  h1.hd{font-size:23px;font-weight:800;line-height:1.4;letter-spacing:-.5px;margin-bottom:12px}
+  h2.hd{font-size:18px;font-weight:800;line-height:1.4;letter-spacing:-.4px;margin-bottom:10px}
+  .lead{font-size:14px;color:#333;line-height:1.75}
+
+  .btn{display:block;width:100%;text-align:center;background:var(--navy);color:#fff;
+    font-size:15px;font-weight:700;padding:16px 18px;border-radius:10px;text-decoration:none;
+    letter-spacing:-.2px;border:none;cursor:pointer;line-height:1.4}
+  .btn:active{background:var(--navy-d)}
+  .btn:disabled{background:#b7bdc7;cursor:not-allowed}
+  .btn-sm{width:auto;padding:11px 14px;font-size:13px;border-radius:8px;white-space:nowrap}
+  .btn-outline{background:#fff;color:var(--navy);border:1.5px solid var(--navy)}
+
+  /* ===== 진단 4종 소개 ===== */
+  .diag-list{margin-top:16px;display:flex;flex-direction:column;gap:18px}
+  .diag-item{background:#fff;border-radius:12px;padding:18px 16px}
+  .diag-item .tag{font-size:12px;font-weight:800;color:var(--navy);margin-bottom:4px}
+  .diag-item .tag.soon{color:#a3720b}
+  .diag-item h3{font-size:15.5px;font-weight:800;margin-bottom:8px}
+  .diag-item p.copy{font-size:13px;color:#333;line-height:1.7;white-space:pre-line}
+  .diag-item .points{margin-top:10px;list-style:none;display:flex;flex-direction:column;gap:4px}
+  .diag-item .points li{font-size:12.5px;color:#3b3b3b}
+  .diag-item .points li::before{content:"✔ ";color:var(--ok);font-weight:800}
+
+  /* ===== 신청 폼 ===== */
+  .form-section{padding:32px 24px}
+  .form-section h2.hd{margin-bottom:4px}
+  .form-sub{font-size:13px;color:var(--gray);margin-bottom:22px}
+
+  .field{margin-bottom:20px}
+  .field label.f-label{display:block;font-size:13.5px;font-weight:700;margin-bottom:8px}
+  .field label.f-label .req{color:var(--err);margin-left:2px}
+  .field label.f-label .opt{color:var(--gray);font-weight:500;font-size:12px;margin-left:4px}
+
+  .diag-check{display:flex;flex-direction:column;gap:10px}
+  .diag-check label{display:flex;align-items:center;gap:10px;font-size:14px;font-weight:600;
+    border:1.5px solid var(--line);border-radius:10px;padding:13px 14px;cursor:pointer}
+  .diag-check label.soon{opacity:.55}
+  .diag-check input{width:18px;height:18px;accent-color:var(--navy);flex:none}
+  .diag-check span.soon-badge{font-size:11px;color:#a3720b;font-weight:700;margin-left:auto}
+
+  input[type=text], input[type=tel], input[type=number], select, textarea{
+    width:100%;padding:13px 14px;font-size:14px;border:1.5px solid var(--line);border-radius:9px;
+    font-family:inherit;color:var(--ink);background:#fff}
+  input:focus, select:focus, textarea:focus{outline:none;border-color:var(--navy)}
+  textarea{resize:vertical;min-height:80px}
+
+  .inline-row{display:flex;gap:8px}
+  .inline-row input{flex:1;min-width:0}
+
+  .radio-row{display:flex;gap:8px}
+  .radio-row label{flex:1;text-align:center;font-size:13px;font-weight:600;border:1.5px solid var(--line);
+    border-radius:9px;padding:11px 6px;cursor:pointer;color:#555}
+  .radio-row input{display:none}
+  .radio-row input:checked + span{color:var(--navy)}
+  .radio-row label:has(input:checked){border-color:var(--navy);background:#EEF2FA;color:var(--navy)}
+
+  .unit-suffix{position:relative}
+  .unit-suffix span{position:absolute;right:14px;top:50%;transform:translateY(-50%);font-size:13px;color:var(--gray)}
+  .unit-suffix input{padding-right:34px}
+
+  .hint{font-size:12px;color:var(--gray);margin-top:6px}
+  .hint.err{color:var(--err)}
+  .hint.ok{color:var(--ok)}
+
+  .agree-box{display:flex;align-items:flex-start;gap:10px;background:var(--gray-bg);border-radius:9px;padding:14px}
+  .agree-box input{width:18px;height:18px;accent-color:var(--navy);flex:none;margin-top:2px}
+  .agree-box .agree-text{font-size:12.5px;color:#444;line-height:1.6}
+  .agree-box .agree-text a{color:var(--navy);text-decoration:underline}
+
+  .submit-note{font-size:12px;color:var(--gray);text-align:center;margin-top:12px;line-height:1.6}
+
+  .ch-badge{display:inline-block;font-size:11px;font-weight:700;color:var(--navy);background:#DEE6F4;
+    padding:4px 9px;border-radius:6px;margin-bottom:10px}
+
+  /* ===== 완료 화면 ===== */
+  .done-screen{display:none;padding:80px 24px;text-align:center}
+  .done-screen.active{display:block}
+  .done-icon{width:56px;height:56px;border-radius:50%;background:var(--navy);color:#fff;
+    display:flex;align-items:center;justify-content:center;font-size:28px;margin:0 auto 20px}
+  .done-screen h2{font-size:19px;font-weight:800;margin-bottom:10px}
+  .done-screen p{font-size:13.5px;color:var(--gray);line-height:1.7}
+  .done-list{margin-top:22px;text-align:left;background:var(--gray-bg);border-radius:10px;padding:16px}
+  .done-list dt{font-size:12px;color:var(--gray);margin-top:8px}
+  .done-list dt:first-child{margin-top:0}
+  .done-list dd{font-size:13.5px;font-weight:700}
+
+  .note{font-size:12px;color:#8a8f93;text-align:center;padding:20px 24px 32px;line-height:1.6;background:#fafafa}
+
+  #form-view.hidden{display:none}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div id="form-view">
+
+    <!-- 인트로 -->
+    <section class="block blue">
+      <span class="ch-badge" id="ch-badge" style="display:none"></span>
+      <h1 class="hd">우리 집 위생,<br>전문가에게 직접<br>진단받아 보세요.</h1>
+      <p class="lead">해충 · 공기질 · 침구 위생까지.<br>필요한 진단을 선택해 신청하시면<br>세스코 고객센터에서 안내드립니다.</p>
+    </section>
+
+    <!-- 진단 4종 소개 (규연매니저 문구 기반) -->
+    <section class="block green">
+      <div class="eyebrow">전문가 진단 서비스 안내 (4종)</div>
+      <h2 class="hd">필요와 관심에 맞게,<br>지금 바로 신청해 보세요.</h2>
+
+      <div class="diag-list">
+        <div class="diag-item">
+          <div class="tag">① 해충 정밀진단</div>
+          <h3>비염, 아토피 등 아이 알레르기 유발의 원인이 되는 해충</h3>
+          <p class="copy">아이가 힘들어하는 각종 알레르기, 비염·아토피도 혹시 집 안 해충 때문은 아닐까요?
+
+바퀴벌레와 같은 실내 해충은 비염, 아토피 등 각종 알레르기를 유발하는 물질을 남기고, 아이가 생활하는 공간의 위생 환경에까지 영향을 줄 수 있습니다.</p>
+          <ul class="points">
+            <li>발생한 해충의 종류와 발생 원인 확인</li>
+            <li>주방·욕실·배수구 등 주요 발생 공간 점검</li>
+            <li>해충 유입 경로 및 서식 환경 진단</li>
+            <li>우리 집 환경에 맞는 예방 및 관리 방법 제안</li>
+          </ul>
+        </div>
+
+        <div class="diag-item">
+          <div class="tag">② 플러스알파케어 체험</div>
+          <h3>아이가 있는 집 기본 위생관리 서비스</h3>
+          <p class="copy">아이가 생활하는 우리 집, 각종 세균과 오염까지 고려하여 공간별 위생 관리하고 계신가요?
+
+플러스알파케어는 세스코 환경가전 관리와 함께 생활공간 곳곳의 위생 상태를 점검하고 관리하는 세스코만의 차별화된 공간 위생관리 서비스입니다.</p>
+          <ul class="points">
+            <li>환경가전 관리와 생활공간 위생 상태 점검</li>
+            <li>자주 접촉하는 공간의 위생 케어(표면살균 서비스)</li>
+            <li>오염이 쌓이기 쉬운 공간 집중 관리(배수구 위생관리 서비스)</li>
+            <li>생활환경에 맞는 위생 관리 방법 제안</li>
+          </ul>
+        </div>
+
+        <div class="diag-item">
+          <div class="tag">③ 실내 공기질 · 라돈 진단</div>
+          <h3>집중력이 필요한 우리 아이 공간, 학습환경을 좌우하는 공기질까지</h3>
+          <p class="copy">하루종일 숨쉬는 실내 공기 중에는 미세먼지뿐 아니라 학습 집중력 저하를 유발하는 이산화탄소(CO₂), 기저질환을 유발하는 휘발성유기화합물(VOCs), 1급 발암물질 라돈 등 눈에 보이지 않는 공기 오염 요인이 존재하곤 합니다.</p>
+          <ul class="points">
+            <li>실내 공기질 측정 및 오염도 분석</li>
+            <li>라돈 농도 측정</li>
+            <li>공간별 환기 환경 점검</li>
+            <li>우리 집에 맞는 공기 관리 방법 제안</li>
+          </ul>
+        </div>
+
+        <div class="diag-item">
+          <div class="tag soon">④ 침구 · 매트리스 오염 진단 <span style="font-weight:700">(오픈 예정)</span></div>
+          <h3>10가구 중 8가구에서 발견되는 진드기, 우리 아이가 매일 잠드는 침구는 정말 괜찮을까요?</h3>
+          <p class="copy">매일 우리가 사용하는 매트리스와 침구는 땀, 피부 각질, 먼지 등이 지속적으로 축적되는 공간으로, 각종 호흡기 질환과 알레르기, 비염 등이 걱정된다면 정기적인 위생 관리가 무엇보다 중요한 생활환경입니다.</p>
+          <ul class="points">
+            <li>초정밀 현미경 장비를 활용한 침구·매트리스 오염도 진단</li>
+            <li>위생 관리가 필요한 구간 점검</li>
+            <li>생활환경 개선 및 관리 가이드 제공</li>
+            <li>세스코 전문 매트리스 케어 서비스 연계</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- 신청 폼 -->
+    <form class="form-section" id="apply-form" novalidate>
+      <h2 class="hd">전문가 진단 신청</h2>
+      <p class="form-sub">아래 정보를 입력하시면 세스코 고객센터에서 순차적으로 연락드립니다.</p>
+
+      <!-- 1. 진단 선택 -->
+      <div class="field">
+        <label class="f-label">신청할 진단을 선택해 주세요<span class="req">*</span> <span class="opt">(복수 선택 가능)</span></label>
+        <div class="diag-check">
+          <label><input type="checkbox" name="diag" value="해충 정밀진단" data-key="pest"><span>① 해충 정밀진단</span></label>
+          <label><input type="checkbox" name="diag" value="플러스알파케어 체험" data-key="alpha"><span>② 플러스알파케어 체험</span></label>
+          <label><input type="checkbox" name="diag" value="실내 공기질·라돈 진단" data-key="air"><span>③ 실내 공기질·라돈 진단</span></label>
+          <label class="soon"><input type="checkbox" name="diag" value="침구·매트리스 오염진단" data-key="bed"><span>④ 침구·매트리스 오염진단</span><span class="soon-badge">오픈예정</span></label>
+        </div>
+        <p class="hint" id="diag-hint">1개 이상 선택해 주세요.</p>
+      </div>
+
+      <!-- 2. 신청자명 -->
+      <div class="field">
+        <label class="f-label" for="applicant-name">신청자명<span class="req">*</span></label>
+        <input type="text" id="applicant-name" placeholder="이름을 입력해 주세요" required>
+      </div>
+
+      <!-- 3. 연락처 + 본인인증 -->
+      <div class="field">
+        <label class="f-label" for="phone">연락처<span class="req">*</span> <span class="opt">(본인인증 필요)</span></label>
+        <div class="inline-row">
+          <input type="tel" id="phone" placeholder="휴대폰 번호 (- 없이 입력)" maxlength="11" inputmode="numeric">
+          <button type="button" class="btn btn-sm" id="send-auth-btn">인증번호 전송</button>
+        </div>
+        <div class="inline-row" style="margin-top:8px" id="auth-code-row" hidden>
+          <input type="text" id="auth-code" placeholder="인증번호 6자리" maxlength="6" inputmode="numeric">
+          <button type="button" class="btn btn-sm btn-outline" id="verify-auth-btn">확인</button>
+        </div>
+        <p class="hint" id="auth-hint"></p>
+      </div>
+
+      <!-- 4. 장소 구분 -->
+      <div class="field">
+        <label class="f-label">장소 구분<span class="req">*</span></label>
+        <div class="radio-row">
+          <label><input type="radio" name="place-type" value="가정집"><span>가정집</span></label>
+          <label><input type="radio" name="place-type" value="요식업체"><span>요식업체</span></label>
+          <label><input type="radio" name="place-type" value="일반 사업체"><span>일반 사업체</span></label>
+        </div>
+      </div>
+
+      <!-- 5. 서비스 장소 면적 -->
+      <div class="field">
+        <label class="f-label" for="area">서비스 장소 면적<span class="req">*</span></label>
+        <div class="unit-suffix">
+          <input type="number" id="area" placeholder="숫자만 입력" min="1" inputmode="numeric">
+          <span>m²</span>
+        </div>
+      </div>
+
+      <!-- 6. 주소 -->
+      <div class="field">
+        <label class="f-label" for="addr-main">주소<span class="req">*</span></label>
+        <div class="inline-row">
+          <input type="text" id="addr-main" placeholder="주소 검색을 눌러주세요" readonly>
+          <button type="button" class="btn btn-sm" id="addr-search-btn">주소 검색</button>
+        </div>
+        <input type="text" id="addr-detail" placeholder="상세 주소를 입력해 주세요" style="margin-top:8px">
+      </div>
+
+      <!-- 7. 세부 요청사항 -->
+      <div class="field">
+        <label class="f-label" for="memo">세부 요청사항 <span class="opt">(선택)</span></label>
+        <textarea id="memo" placeholder="추가로 안내가 필요한 내용을 입력해 주세요"></textarea>
+      </div>
+
+      <!-- 8. 개인정보 동의 -->
+      <div class="field">
+        <div class="agree-box">
+          <input type="checkbox" id="agree-privacy">
+          <label for="agree-privacy" class="agree-text">
+            개인정보 수집 및 이용에 동의합니다.<span class="req">*</span><br>
+            수집 항목: 이름, 연락처, 주소, 서비스 요청 내용 / 수집 목적: 전문가 진단 신청 접수 및 안내 / 보유 기간: 서비스 제공 완료 후 관련 법령에 따름.
+          </label>
+        </div>
+      </div>
+
+      <button type="submit" class="btn" id="submit-btn" disabled>신청하기</button>
+      <p class="submit-note">진단은 무료이며, 신청 후 세스코 고객센터에서 순차적으로 연락드립니다.<br>휴대폰 본인인증 완료 후 제출이 가능합니다.</p>
+    </form>
+
+    <p class="note">
+      ※ 본 페이지는 세스코 고객 혜택 백서(<b>B-EX-02</b>) 기준 전문가 진단 4종 신청을 통합 접수합니다.<br>
+      ※ 접수된 신청은 기존 무료진단 신청과 동일하게 고객센터 콜백 → 담당 부서 이관 절차로 처리됩니다.
+    </p>
+  </div>
+
+  <!-- 완료 화면 -->
+  <div class="done-screen" id="done-view">
+    <div class="done-icon">✓</div>
+    <h2>신청이 접수되었습니다</h2>
+    <p>입력하신 연락처로 세스코 고객센터에서<br>순차적으로 연락드릴 예정입니다.</p>
+    <dl class="done-list" id="done-summary"></dl>
+  </div>
+
+</div>
+
+<script>
+(function(){
+  // 0. 유입 채널 파라미터 캡처 (ch=KIZANIA 등)
+  var params = new URLSearchParams(location.search);
+  var channel = params.get('ch') || 'DIRECT';
+  if (params.get('ch')) {
+    var badge = document.getElementById('ch-badge');
+    badge.textContent = '유입경로: ' + channel;
+    badge.style.display = 'inline-block';
+  }
+
+  // 0-1. 진단 항목 사전 선택 (diag=pest 또는 diag=pest,air 형태)
+  var diagParam = params.get('diag');
+  if (diagParam) {
+    var preKeys = diagParam.split(',').map(function(s){ return s.trim(); });
+    preKeys.forEach(function(key){
+      var target = document.querySelector('input[name=diag][data-key="' + key + '"]');
+      if (target) target.checked = true;
+    });
+  }
+
+  // 1. 본인인증 (프로토타입 목업 — 실서비스는 세스코몰 기존 본인인증 솔루션 연동 필요)
+  var phoneInput = document.getElementById('phone');
+  var sendBtn = document.getElementById('send-auth-btn');
+  var authRow = document.getElementById('auth-code-row');
+  var authCodeInput = document.getElementById('auth-code');
+  var verifyBtn = document.getElementById('verify-auth-btn');
+  var authHint = document.getElementById('auth-hint');
+  var isVerified = false;
+  var mockCode = null;
+
+  sendBtn.addEventListener('click', function(){
+    var phone = phoneInput.value.replace(/[^0-9]/g,'');
+    if (phone.length < 10) {
+      authHint.textContent = '휴대폰 번호를 정확히 입력해 주세요.';
+      authHint.className = 'hint err';
+      return;
+    }
+    mockCode = String(Math.floor(100000 + Math.random()*900000));
+    authRow.hidden = false;
+    isVerified = false;
+    updateSubmitState();
+    authHint.textContent = '인증번호를 전송했습니다. (프로토타입: ' + mockCode + ')';
+    authHint.className = 'hint';
+  });
+
+  verifyBtn.addEventListener('click', function(){
+    if (authCodeInput.value.trim() === mockCode) {
+      isVerified = true;
+      authHint.textContent = '본인인증이 완료되었습니다.';
+      authHint.className = 'hint ok';
+    } else {
+      isVerified = false;
+      authHint.textContent = '인증번호가 일치하지 않습니다.';
+      authHint.className = 'hint err';
+    }
+    updateSubmitState();
+  });
+
+  // 2. 주소 검색 (Daum 우편번호)
+  document.getElementById('addr-search-btn').addEventListener('click', function(){
+    new daum.Postcode({
+      oncomplete: function(data){
+        document.getElementById('addr-main').value = data.roadAddress || data.jibunAddress;
+        document.getElementById('addr-detail').focus();
+      }
+    }).open();
+  });
+
+  // 3. 진단 선택 유효성
+  var diagChecks = document.querySelectorAll('input[name=diag]');
+  var diagHint = document.getElementById('diag-hint');
+  function diagSelected(){
+    return Array.from(diagChecks).filter(function(c){return c.checked;});
+  }
+
+  // 4. 제출 버튼 활성화 조건
+  var submitBtn = document.getElementById('submit-btn');
+  var agreeCheck = document.getElementById('agree-privacy');
+  var nameInput = document.getElementById('applicant-name');
+  var areaInput = document.getElementById('area');
+
+  function updateSubmitState(){
+    var placeSelected = document.querySelector('input[name=place-type]:checked');
+    var addrOk = document.getElementById('addr-main').value.trim().length > 0;
+    var ok = diagSelected().length > 0
+      && nameInput.value.trim().length > 0
+      && isVerified
+      && !!placeSelected
+      && areaInput.value.trim().length > 0
+      && addrOk
+      && agreeCheck.checked;
+    submitBtn.disabled = !ok;
+  }
+
+  document.getElementById('apply-form').addEventListener('input', updateSubmitState);
+  document.getElementById('apply-form').addEventListener('change', updateSubmitState);
+
+  // 5. 제출 처리 (프로토타입: 백엔드 연동 전 데이터 구조 확인용)
+  document.getElementById('apply-form').addEventListener('submit', function(e){
+    e.preventDefault();
+    if (submitBtn.disabled) return;
+
+    var payload = {
+      신청구분: '전문가진단신청',
+      유입채널: channel,
+      선택진단항목: diagSelected().map(function(c){return c.value;}).join(', '),
+      신청자명: nameInput.value.trim(),
+      연락처: phoneInput.value.replace(/[^0-9]/g,''),
+      본인인증여부: isVerified,
+      장소구분: document.querySelector('input[name=place-type]:checked').value,
+      서비스장소면적: areaInput.value + 'm²',
+      주소: document.getElementById('addr-main').value + ' ' + document.getElementById('addr-detail').value,
+      세부요청사항: document.getElementById('memo').value.trim(),
+      개인정보동의: agreeCheck.checked
+    };
+
+    // TODO(개발팀): 기존 무료진단 신청 API 엔드포인트로 payload POST 연동
+    console.log('[전문가진단 신청 payload]', payload);
+
+    document.getElementById('form-view').classList.add('hidden');
+    var done = document.getElementById('done-view');
+    done.classList.add('active');
+    var dl = document.getElementById('done-summary');
+    dl.innerHTML =
+      '<dt>선택 진단</dt><dd>' + payload.선택진단항목 + '</dd>' +
+      '<dt>신청자명</dt><dd>' + payload.신청자명 + '</dd>' +
+      '<dt>연락처</dt><dd>' + payload.연락처 + '</dd>' +
+      '<dt>서비스 장소</dt><dd>' + payload.주소 + '</dd>';
+    window.scrollTo(0,0);
+  });
+})();
+</script>
+</body>
+</html>
